@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CandidatureStageController!{% endblock %}
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4c7aaf;
+  color: white;
+}
+</style>
+</head>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<h1> Liste des Demandes des CERTIFS </h1>
+
+<table id="customers">
+<tr>
+   <th scope="row">ID</th>
+    <th scope="row">Nom Certif</th>
+    <th scope="row">ID CERTIF</th>
+     <th scope="row">NOM Certif</th>
+       <th scope="row">PRENOM PARTICIPANT</th>
+       <th scope="row">DATE</th>
+       <th scope="row">EXPERIENCE</th>
+        <th scope="row">Email</th>
+       
+    
+</tr>
+    {% for DemandeCertification in DemandesCertifications %}
+<tr>
+   <td>
+
+{{ DemandeCertification.id }}
+
+   </td>
+   <td>
+
+{{ DemandeCertification.Certification.nom }}
+
+   </td>
+
+ <td>
+
+{{ DemandeCertification.Certification.id }}
+
+   </td>
+
+
+   <td>
+
+{{ DemandeCertification.NomParticipant }}
+
+   </td>
+
+
+<td>
+
+{{DemandeCertification.PrenomParticipant}}
+
+   </td>
+   
+
+<td>
+
+{{DemandeCertification.DateDemande |date('d/m/Y')}}
+
+   </td>
+
+   
+   <td>
+
+{{DemandeCertification.ExperienceParticipant}}
+
+   </td>
+
+       <td>
+
+{{DemandeCertification.Email}}
+
+   </td>
+
+
+    <td>
+
+<a href="{{ path('ModifierDemandeCertification', {'id': DemandeCertification.id}) }}"><button class="btn"><i class="fa fa-folder"></i> Modifier</button></a>
+  
+
+<a href="{{ path('SupprimerDemandeCertification', {'id': DemandeCertification.id}) }}"><button class="btn"><i class="fa fa-trash"></i> Supprimer</button></a> 
+
+
+
+{%endfor%}
+
+
+
+
+</td>
+</tr>
+</table>
+
+</html>
+
+
+
+{% endblock %}
