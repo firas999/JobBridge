@@ -17,7 +17,9 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-
+use Captcha\Bundle\CaptchaBundle\Form\Type\CaptchaType;
+use Captcha\Bundle\CaptchaBundle\Validator\Constraints\ValidCaptcha;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
 class CertificationType extends AbstractType
@@ -35,6 +37,15 @@ class CertificationType extends AbstractType
                 'choice_label'=>'nom',
                 
                 ])   
+            ->add('captchaCode', CaptchaType::class, array(
+                    'captchaConfig' => 'ExampleCaptchaUserRegistration',
+                    'constraints' => [
+                        new ValidCaptcha([
+                            'message' => 'Invalid captcha, please try again',
+                        ]),
+                    ],
+                ))
+
                 ;
         ;
     }

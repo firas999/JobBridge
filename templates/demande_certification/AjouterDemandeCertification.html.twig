@@ -58,7 +58,7 @@
 {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
 <table id="customers">
 <tr>
-<td> {{form_label(form.Certification,"Entreprise")  }}</td>
+<td> {{form_label(form.Certification,"Certification")  }}</td>
 <td> {{form_widget(form.Certification) }}
 {{ form_errors(form.Certification) }}
 
@@ -98,9 +98,13 @@
 {{ form_errors(form.Email) }}
  </td>
 </tr>
-
-
-
+<tr>
+<td>
+<center>
+{{ form_row(form.captchaCode) }}
+</td>
+</tr>
+</center>
 </table>
 {{ form_end(form) }}
 

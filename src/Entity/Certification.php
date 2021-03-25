@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+
+
 /**
  * @ORM\Entity(repositoryClass=CertificationRepository::class)
  */
@@ -42,6 +44,10 @@ class Certification
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="Description is required")
+     * @Assert\Length(
+     *      min = 10,    
+     *      minMessage = "Description must be at least {{ limit }} characters long",
+     * )
      */
     private $Description;
 
@@ -62,6 +68,21 @@ class Certification
      * @ORM\OneToMany(targetEntity=DemandeCertification::class, mappedBy="Certification", orphanRemoval=true)
      */
     private $yes;
+
+
+
+    protected $captchaCode;
+    
+    public function getCaptchaCode()
+    {
+      return $this->captchaCode;
+    }
+
+    public function setCaptchaCode($captchaCode)
+    {
+      $this->captchaCode = $captchaCode;
+    }
+
 
     public function __construct()
     {
@@ -159,6 +180,11 @@ class Certification
 
         return $this;
     }
+
+
+
+
+
 
     /**
      * @return Collection|DemandeCertification[]

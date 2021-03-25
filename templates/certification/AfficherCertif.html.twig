@@ -3,9 +3,18 @@
 {% block title %}Hello CandidatureStageController!{% endblock %}
 
 {% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <h1> Liste des Certifications </h1>
+<br>
+<center>
+<a href="{{ path('TrieDate') }}"><button class="btn"><i class="fa fa-folder"></i> Les plus proche</button></a>
+<a href="{{ path('JAVA') }}"><button class="btn"><i class="fa fa-folder"></i>JAVA</button></a>
+<a href="{{ path('WEB') }}"><button class="btn"><i class="fa fa-folder"></i>WEB</button></a>
+<a href="{{ path('stat') }}"><button class="btn"><i class="fa fa-folder"></i>STATISTIQUE</button></a>
+<a href="{{ path('pdf') }}"><button class="btn"><i class="fa fa-folder"></i>IMPRIMER</button></a>
+</center>
 
 
 <!DOCTYPE html>
@@ -39,7 +48,7 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
 <table border ="1" id="customers">
@@ -53,6 +62,7 @@
        <th scope="row">NOM ENTREPRISE</th>
     
 </tr>
+<tbody id="all">
     {% for certification in Certifications %}
 <tr>
    <td>
@@ -105,18 +115,97 @@
 <a href="{{ path('SupprimerCertif', {'id': certification.id}) }}"<button class="btn"><i class="fa fa-trash"></i> Supprimer</button></a> 
 
 
+</td>
+
+
+
+
+</tr>
 
 
 {%endfor%}
-
+</tbody>
 	
-
-
 
 </td>
 </tr>
+<td>
+
+<script type="text/javascript">
+function imprimer_page(){
+  window.print();
+}
+</script>
+
+<form>
+  <input id="impression" name="impression" type="button" onclick="imprimer_page()" value="Imprimer cette page" />
+</form>
+
+</td>
+
+
+
+</table>
+<br>
+
+ <div class="navigation">
+ <center>
+            {{ knp_pagination_render(Certifications) }}
+</center>        
+        </div>
+
+       
+
+
+
+<tbody id="search">
+</tbody>
 </table>
 
 
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script>
+$( document ).ready(function() {
+        $("#search").keyup(function(e){
+/* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+          var value = $(this).val();
+/* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+  $.ajax({
+/* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                url : "{{ path('SearchCertification') }}",
+/* La méthode utilisée pour transférer les données est GET */
+                type : 'GET', 
+/*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */                
+                data: {
+                        'searchValue' : value
+                    },
+/*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                success : function(retour){
+                  if(retour){
+  			$('#t tbody#search').empty();
+  			$.each(JSON.parse(retour), function(i, obj) {
+  			$('#t tbody#all').hide();
+  			$('#t tbody#search').append('<tr><td> '+obj.id+'  </td><td>    '+obj.type+'  </td><td>'+obj.DatePassage+' </td><td>    '+obj.prix+' </td><td>    '+obj.description+' </td><td>    '+obj.entreprise.nom+' </td>);
+});
+                  }
+                  else
+                  {
+   $('#t tbody#all').show();
+   $('#t tbody#search').empty();
+   $('#t tbody#search').fadeIn('fast');
+                     }
+ },
+        });
+        return false;
+        });
+    });
+        </script>
+
+
+
+
 {% endblock %}
+

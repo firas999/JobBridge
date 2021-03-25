@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 
 use App\Entity\Certification;
@@ -15,6 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+use Captcha\Bundle\CaptchaBundle\Form\Type\CaptchaType;
+use Captcha\Bundle\CaptchaBundle\Validator\Constraints\ValidCaptcha;
 
 class DemandeCertificationType extends AbstractType
 {
@@ -30,8 +32,16 @@ class DemandeCertificationType extends AbstractType
             ->add('PrenomParticipant')
             ->add('DateDemande')
             ->add('ExperienceParticipant')
-            ->add('Email')
-            
+            ->add('Email' , EmailType::class)
+           
+            ->add('captchaCode', CaptchaType::class, array(
+                'captchaConfig' => 'ExampleCaptchaUserRegistration',
+                'constraints' => [
+                    new ValidCaptcha([
+                        'message' => 'Invalid captcha, please try again',
+                    ]),
+                ],
+            ))
                 ;
         ;
     }

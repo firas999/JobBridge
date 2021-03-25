@@ -31,7 +31,7 @@ class DemandeCertificationController extends AbstractController
     /**
     * @Route("/AjouterDemandeCertification", name="AjouterDemandeCertification")
     */
-    public function ajouterDemandeCertif(request $request){
+    public function ajouterDemandeCertif(request $request,\Swift_Mailer $mailer){
 
         $DemandeCertification=new DemandeCertification();
         $form=$this->createForm(DemandeCertificationType::class,$DemandeCertification);
@@ -39,14 +39,34 @@ class DemandeCertificationController extends AbstractController
         
         $form->handleRequest($request); 
         if ($form->isSubmitted() && $form->isValid() ) 
-        { $Certification = $form->getData();
-
-
+        { $DemandeCertification = $form->getData();
+            
         $em=$this->getDoctrine()->getManager(); 
         $em->persist($DemandeCertification);
         $em->flush();
-        return $this->redirectToRoute('AfficherDemandeCertification');
-        }
+      
+    
+ // On crée le message
+ $message = (new \Swift_Message('Nouveau DemandeCertification'))
+ // On attribue l'expéditeur
+ ->setFrom('ouajihjebali@gmail.com')
+ // On attribue le destinataire
+ ->setTo($DemandeCertification->getEmail())
+ // On crée le texte avec la vue
+
+ ->setBody(  
+     
+    "Votre Demande de passage de Certification a été enregistré , nous vous répondrons dans les meilleurs délais."
+)
+;
+
+;
+$mailer->send($message);
+    
+
+return $this->redirectToRoute('AfficherDemandeCertification');
+    
+    }
 
 
         return $this->render('demande_certification/AjouterDemandeCertification.html.twig', [
@@ -67,6 +87,8 @@ class DemandeCertificationController extends AbstractController
         ]);
         
     }
+
+
 
 
  /**
@@ -113,6 +135,52 @@ class DemandeCertificationController extends AbstractController
 
     }
 
+
+
+      /**
+    * @Route("/AjouterDemandeCertificationFront", name="AjouterDemandeCertificationFront")
+    */
+    public function ajouterDemandeCertif2(request $request,\Swift_Mailer $mailer){
+
+        $DemandeCertification=new DemandeCertification();
+        $form=$this->createForm(DemandeCertificationType::class,$DemandeCertification);
+        $form->add('Ajouter', SubmitType::class);
+        
+        $form->handleRequest($request); 
+        if ($form->isSubmitted() && $form->isValid() ) 
+        { $Certification = $form->getData();
+
+
+        $em=$this->getDoctrine()->getManager(); 
+        $em->persist($DemandeCertification);
+        $em->flush();
+
+// On crée le message
+$message = (new \Swift_Message('Nouveau DemandeCertification'))
+// On attribue l'expéditeur
+->setFrom('ouajihjebali@gmail.com')
+// On attribue le destinataire
+->setTo($DemandeCertification->getEmail())
+// On crée le texte avec la vue
+
+->setBody(  
+    
+   "Votre Demande de passage de Certification a été enregistré , nous vous répondrons dans les meilleurs délais."
+)
+;
+
+;
+$mailer->send($message);
+
+
+        return $this->redirectToRoute('AfficherCertifFront');
+        }
+
+
+        return $this->render('demande_certification/AjouteDemandeFront.html.twig', [
+            'form'=>$form->createView()
+        ]);
+	}
 
 
 

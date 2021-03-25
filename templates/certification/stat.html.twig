@@ -1,0 +1,29 @@
+
+
+ {% extends 'base.html.twig' %}
+
+{% block title %}Hello CandidatureStageController!{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div class="robust-content content container-fluid">
+<center>
+     <div class="content-wrapper">
+         <div id="div_chart"></div>
+ 
+         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+         <script type="text/javascript">
+             {{ gc_draw(piechart, 'div_chart') }}
+         </script>
+ 
+     </div>
+     </center>
+ </div>
+
+
+
+
+{% endblock %}
+

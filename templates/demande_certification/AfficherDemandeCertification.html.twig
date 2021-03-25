@@ -42,6 +42,10 @@
 
 <h1> Liste des Demandes des CERTIFS </h1>
 
+
+
+
+
 <table id="customers">
 <tr>
    <th scope="row">ID</th>
@@ -120,11 +124,24 @@
 
 {%endfor%}
 
-
-
-
 </td>
 </tr>
+<td>
+
+<script type="text/javascript">
+function imprimer_page(){
+  window.print();
+}
+</script>
+
+<form>
+  <input id="impression" name="impression" type="button" onclick="imprimer_page()" value="Imprimer cette page" />
+</form>
+
+</td>
+
+
+
 </table>
 
 </html>

@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CandidatureStageController!{% endblock %}
+
+{% block body %}
+
+
+<h1> Liste des Certifications </h1>
+<br>
+
+<br>
+
+<a href="{{ path('TrieDate') }}"><button class="btn"><i class="fa fa-folder"></i> Les plus proche</button></a>
+<a href="{{ path('JAVA') }}"><button class="btn"><i class="fa fa-folder"></i>JAVA</button></a>
+<a href="{{ path('WEB') }}"><button class="btn"><i class="fa fa-folder"></i>WEB</button></a>
+
+
+<br>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4c7aaf;
+  color: white;
+}
+</style>
+</head>
+
+
+
+<table border ="1" id="customers">
+<tr>
+   <th scope="row">ID</th>
+    <th scope="row">TYPE</th>
+     <th scope="row">DATE PASSAGE</th>
+       <th scope="row">PRIX</th>
+       <th scope="row">DESCRIPTION</th>
+       <th scope="row">NOM</th>
+       <th scope="row">NOM ENTREPRISE</th>
+    
+</tr>
+<tbody id="all">
+    {% for certification in Certifications %}
+<tr>
+   <td>
+
+{{ certification.id }}
+
+   </td>
+   <td>
+
+{{ certification.type }}
+
+   </td>
+
+<td>
+
+{{certification.DatePassage |date('d/m/Y')}}
+
+   </td>
+
+
+<td>
+
+{{certification.prix}}
+
+   </td>
+   <td>
+
+{{certification.description}}
+
+   </td>
+   <td>
+
+{{certification.nom}}
+
+   </td>
+
+     <td>
+
+{{certification.entreprise.nom}}
+
+   </td>
+
+
+    <td>
+
+
+
+<a href="{{ path('ModifierCertif', {'id': certification.id}) }}"><button class="btn"><i class="fa fa-folder"></i> Modifier</button></a>
+  
+<a href="{{ path('SupprimerCertif', {'id': certification.id}) }}"<button class="btn"><i class="fa fa-trash"></i> Supprimer</button></a> 
+
+
+</td>
+</tr>
+
+
+{%endfor%}
+</tbody>
+	
+
+<tbody id="search">
+</tbody>
+</table>
+
+
+
+
+
+{% endblock %}
+
