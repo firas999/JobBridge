@@ -3,11 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CertificationRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * @ORM\Entity(repositoryClass=CertificationRepository::class)
@@ -18,79 +14,46 @@ class Certification
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-    
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     
      */
     private $Type;
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank(message="Date is required")
      */
     private $DatePassage;
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Positive
-     * @Assert\NotBlank(message="Price is required")
      */
     private $Prix;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="Description is required")
-     * @Assert\Length(
-     *      min = 10,    
-     *      minMessage = "Description must be at least {{ limit }} characters long",
-     * )
      */
     private $Description;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Name is required")
      */
     private $Nom;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="yes")
-     * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank(message="Entreprise is required")
-     */
-    private $Entreprise;
-
-    /**
-     * @ORM\OneToMany(targetEntity=DemandeCertification::class, mappedBy="Certification", orphanRemoval=true)
-     */
-    private $yes;
-
-
-
-    protected $captchaCode;
-    
-    public function getCaptchaCode()
-    {
-      return $this->captchaCode;
-    }
-
-    public function setCaptchaCode($captchaCode)
-    {
-      $this->captchaCode = $captchaCode;
-    }
-
-
-    public function __construct()
-    {
-        $this->yes = new ArrayCollection();
-    }
-
   
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="certifications")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $IdEntreprise;
+
+    /**
+     * @ORM\OneToOne(targetEntity=DemandeCertification::class, mappedBy="IdCertif", cascade={"persist", "remove"})
+     */
+    private $demandeCertification;
 
     public function getId(): ?int
     {
@@ -169,52 +132,32 @@ class Certification
         return $this;
     }
 
-    public function getEntreprise(): ?Entreprise
+    public function getIdEntreprise(): ?Entreprise
     {
-        return $this->Entreprise;
+        return $this->IdEntreprise;
     }
 
-    public function setEntreprise(?Entreprise $Entreprise): self
+    public function setIdEntreprise(?Entreprise $IdEntreprise): self
     {
-        $this->Entreprise = $Entreprise;
+        $this->IdEntreprise = $IdEntreprise;
 
         return $this;
     }
 
-
-
-
-
-
-    /**
-     * @return Collection|DemandeCertification[]
-     */
-    public function getYes(): Collection
+    public function getDemandeCertification(): ?DemandeCertification
     {
-        return $this->yes;
+        return $this->demandeCertification;
     }
 
-    public function addYe(DemandeCertification $ye): self
+    public function setDemandeCertification(DemandeCertification $demandeCertification): self
     {
-        if (!$this->yes->contains($ye)) {
-            $this->yes[] = $ye;
-            $ye->setCertification($this);
+        // set the owning side of the relation if necessary
+        if ($demandeCertification->getIdCertif() !== $this) {
+            $demandeCertification->setIdCertif($this);
         }
 
-        return $this;
-    }
-
-    public function removeYe(DemandeCertification $ye): self
-    {
-        if ($this->yes->removeElement($ye)) {
-            // set the owning side to null (unless already changed)
-            if ($ye->getCertification() === $this) {
-                $ye->setCertification(null);
-            }
-        }
+        $this->demandeCertification = $demandeCertification;
 
         return $this;
     }
-
-
 }

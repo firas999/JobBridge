@@ -35,7 +35,14 @@ class CandidatStageRepository extends ServiceEntityRepository
         ;
     }
     */
-
+    public function findByASC()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.DateCandidature', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     /*
     public function findOneBySomeField($value): ?CandidatStage
     {

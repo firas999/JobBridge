@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OffreStageRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,23 +21,27 @@ class OffreStage
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="ce champs est obligatoire")
      */
     private $TypeStage;
 
     /**
      * @ORM\Column(type="dateinterval")
+     * @Assert\NotBlank(message="ce champs est obligatoire")
      */
     private $Duree;
 
     /**
      * @ORM\Column(type="string", length=255)
-     */
+     * @Assert\NotBlank(message="ce champs est obligatoire")
+    */
     private $Exigence;
 
 
     /**
      * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="offreStages")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="ce champs est obligatoire")
      */
     private $IdEntreprise;
 
@@ -73,7 +79,7 @@ class OffreStage
         return $this->Exigence;
     }
 
-    public function setExigence(string $Exigence): self
+    public function setExigence(?string $Exigence): self
     {
         $this->Exigence = $Exigence;
 

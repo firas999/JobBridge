@@ -47,4 +47,16 @@ class OffreStageRepository extends ServiceEntityRepository
         ;
     }
     */
+    
+    public function countForStage(string $type)
+    {
+        return $this->createQueryBuilder('s')
+            ->Where('s.TypeStage = :type')
+            ->setParameter('type', $type)
+            ->select('count(s.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+
 }

@@ -3,10 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DemandeCertificationRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass=DemandeCertificationRepository::class)
  */
@@ -22,61 +20,29 @@ class DemandeCertification
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="NomParticipant is required")
      */
     private $NomParticipant;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="PrenomPart is required")
      */
     private $PrenomParticipant;
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank(message="Date is required")
      */
     private $DateDemande;
 
     /**
-     * @ORM\Column(type="text", length=255)
-     * @Assert\NotBlank(message="Experience is required")
-     *  * @Assert\Length(
-     *      min = 10,    
-     *      minMessage = "Experience must be at least {{ limit }} characters long",
-     * )
+     * @ORM\Column(type="string", length=255)
      */
     private $ExperienceParticipant;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Certification::class, inversedBy="yes")
+     * @ORM\OneToOne(targetEntity=Certification::class, inversedBy="demandeCertification", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank(message="Certification is required")
      */
-    private $Certification;
-
-    /**
-     * @ORM\Column(type="string", length=30)
-     * @Assert\NotBlank(message="Email is required")
-     * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email.")
-     */
-    private $Email;
-
-   
-    protected $captchaCode;
-    
-    public function getCaptchaCode()
-    {
-      return $this->captchaCode;
-    }
-
-    public function setCaptchaCode($captchaCode)
-    {
-      $this->captchaCode = $captchaCode;
-    }
-
-
+    private $IdCertif;
 
     public function getId(): ?int
     {
@@ -143,29 +109,15 @@ class DemandeCertification
         return $this;
     }
 
-    public function getCertification(): ?Certification
+    public function getIdCertif(): ?Certification
     {
-        return $this->Certification;
+        return $this->IdCertif;
     }
 
-    public function setCertification(?Certification $Certification): self
+    public function setIdCertif(Certification $IdCertif): self
     {
-        $this->Certification = $Certification;
+        $this->IdCertif = $IdCertif;
 
         return $this;
     }
-
-    public function getEmail(): ?string
-    {
-        return $this->Email;
-    }
-
-    public function setEmail(string $Email): self
-    {
-        $this->Email = $Email;
-
-        return $this;
-    }
-
-    
 }

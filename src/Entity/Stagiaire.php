@@ -48,9 +48,14 @@ class Stagiaire
     private $Competence;
 
     /**
-     * @ORM\OneToOne(targetEntity=CandidatStage::class, mappedBy="IDStagiaire", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=CandidatStage::class, mappedBy="IDStagiaire",)
      */
     private $candidatStage;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nom;
 
     public function getId(): ?int
     {
@@ -142,6 +147,22 @@ class Stagiaire
         }
 
         $this->candidatStage = $candidatStage;
+
+        return $this;
+    }
+    public function __toString(){
+        $StringId=(string)$this->id;
+        return $StringId;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
 
         return $this;
     }

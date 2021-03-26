@@ -33,11 +33,6 @@ class OffreEmploi
     private $Exigence;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $IdSociete;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $Poste;
@@ -90,18 +85,6 @@ class OffreEmploi
     public function setExigence(string $Exigence): self
     {
         $this->Exigence = $Exigence;
-
-        return $this;
-    }
-
-    public function getIdSociete(): ?int
-    {
-        return $this->IdSociete;
-    }
-
-    public function setIdSociete(int $IdSociete): self
-    {
-        $this->IdSociete = $IdSociete;
 
         return $this;
     }

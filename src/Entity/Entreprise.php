@@ -80,19 +80,15 @@ class Entreprise
     private $offreStages;
 
     /**
-     * @ORM\OneToOne(targetEntity=CandidatStage::class, mappedBy="IDEntreprise", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=CandidatStage::class, mappedBy="IDEntreprise", orphanRemoval=true)
      */
+
     private $candidatStage;
 
     /**
      * @ORM\OneToMany(targetEntity=Certification::class, mappedBy="IdEntreprise", orphanRemoval=true)
      */
     private $certifications;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Certification::class, mappedBy="Entreprise", orphanRemoval=true)
-     */
-    private $yes;
 
     public function __construct()
     {
@@ -101,7 +97,6 @@ class Entreprise
         $this->OffresEmploi = new ArrayCollection();
         $this->offreStages = new ArrayCollection();
         $this->certifications = new ArrayCollection();
-        $this->yes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -376,34 +371,8 @@ class Entreprise
 
         return $this;
     }
-
-    /**
-     * @return Collection|Certification[]
-     */
-    public function getYes(): Collection
-    {
-        return $this->yes;
-    }
-
-    public function addYe(Certification $ye): self
-    {
-        if (!$this->yes->contains($ye)) {
-            $this->yes[] = $ye;
-            $ye->setEntreprise($this);
-        }
-
-        return $this;
-    }
-
-    public function removeYe(Certification $ye): self
-    {
-        if ($this->yes->removeElement($ye)) {
-            // set the owning side to null (unless already changed)
-            if ($ye->getEntreprise() === $this) {
-                $ye->setEntreprise(null);
-            }
-        }
-
-        return $this;
+    public function __toString(){
+        $StringId=(string)$this->id;
+        return $StringId;
     }
 }
