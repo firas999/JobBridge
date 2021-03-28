@@ -1,0 +1,54 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}employee index{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="expert_doctors_area doctor_page">
+
+        <div class="container" >
+            <div class="row">
+            {% for employee in employees %}
+
+                <div class="col-md-6 col-lg-3" >
+                   <div class="single_expert mb-40">
+                    <a class="single_expert mb-40" href="{{ path('employeefront_show', {'id': employee.id}) }}">
+                        <div class="expert_thumb" >
+                            <img src="/uploads/{{employee.img}}"  style="height:300px; width:300px" alt="">
+                        </div>
+                        <div class="experts_name text-center" >
+                            <h3>{{  employee.nom }}</h3>
+                            <span href="{{ path('employeefront_show', {'id': employee.id}) }}">{{employee.prenom }}</span>
+                        </div>
+
+                    </a>
+                   </div>
+                </div>
+
+
+
+
+
+
+
+
+            {% else %}
+
+                <tr>
+                    <td colspan="10">no records found</td>
+                </tr>
+
+            {% endfor %}
+            </div>
+
+                  <a  class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" href="{{ path('employeefront_new') }}">Create new</a>
+
+
+
+
+
+    </div>
+
+                {% endblock %}

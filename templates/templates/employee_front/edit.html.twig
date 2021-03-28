@@ -1,0 +1,13 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Edit Candidat{% endblock %}
+
+{% block body %}
+    <h1>Edit Candidat</h1>
+
+    {{ include('employee_front/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" href="{{ path('employeefront_index') }}">back to list</a>
+
+    {{ include('employee_front/_delete.html.twig') }}
+{% endblock %}

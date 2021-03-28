@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidat index{% endblock %}
+
+{% block body %}
+    <h1>Candidat index</h1>
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" id="search" name="search">
+
+        </div>
+
+<div class="col-md-12">
+    <div class="form-group">
+
+           <form role="search" id="nav-search-form" method="post" action="{{ path('triCandidat') }}" >
+            <button class="btn btn-sm btn-success" type="submit" > trie par taille entreprise </button>
+           </form>
+        <br>
+
+        <form role="search" id="nav-search-form" method="post" action="{{ path('triNom' )}}" >
+            <button class="btn btn-sm btn-success" type="submit" > trie par nom </button>
+
+
+
+        </form>
+
+</div>
+    </div>
+
+
+    <table class="table" id="t">
+        <thead>
+
+        <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Motdepasse</th>
+                <th>Type</th>
+                <th>Secteur</th>
+                <th>Siteweb</th>
+                <th>Tailleentreprise</th>
+                <th>Numerotelephone</th>
+                 <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody id="all">
+        {% for candidat in candidats %}
+            <tr>
+                <td>{{ candidat.id }}</td>
+                <td>{{ candidat.nom }}</td>
+                <td>{{ candidat.prenom }}</td>
+                <td>{{ candidat.motdepasse }}</td>
+                <td>{{ candidat.type }}</td>
+                <td>{{ candidat.secteur }}</td>
+                <td>{{ candidat.siteweb }}</td>
+                <td>{{ candidat.tailleentreprise }}</td>
+                <td>{{ candidat.numerotelephone }}</td>
+                <td> <img id="img"  class="card-img-top img-fluid" width="20" src="/uploads/{{candidat.img}}"></td>
+
+                <td>
+                    <a href="{{ path('candidat_show', {'id': candidat.id}) }}">show</a>
+                    <a href="{{ path('candidat_edit', {'id': candidat.id})}}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+
+
+        </tbody>
+        <tbody id="search">
+        </tbody>
+    </table>
+
+    <a href="{{ path('candidat_new') }}">Create new</a>
+{% endblock %}
+{% block js %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script>
+    $( document ).ready(function() {
+        $("#search").keyup(function(e){
+            /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+            var value = $(this).val();
+            /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+            $.ajax({
+                /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                url : "{{ path('searchcandidatx') }}",
+                /* La méthode utilisée pour transférer les données est GET */
+                type : 'GET',
+                /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                data: {
+                    'searchValue' : value
+                },
+                /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                success : function(retour){
+
+                    if(retour){
+                        $('#t tbody#search').empty();
+                        $.each(JSON.parse(retour), function(i, candidat) {
+                            $('#t tbody#all').hide();
+                            $('#t tbody#search').append('<tr><td> '+candidat.id+'  </td><td>    '+candidat.nom+'  </td><td>    '+candidat.prenom+'  </td><td>    '+candidat.motdepasse+'  </td><td>    '+candidat.type+'  </td><td>    '+candidat.secteur+'  </td><td>    '+candidat.siteweb+'  </td><td>    '+candidat.tailleentreprise+'  </td><td>    '+candidat.numerotelephone+'  </td><td>    '+candidat.img+'  </td>></tr>');
+                        });
+                    }
+                    else
+                    {
+                        $('#t tbody#all').show();
+                        $('#t tbody#search').empty();
+                        $('#t tbody#search').fadeIn('fast');
+                    }
+                },
+            });
+            return false;
+        });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Rec2 index{% endblock %}
+
+{% block body %}
+    <h1>Rec2 index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Texte</th>
+                <th>Date</th>
+                <th>employee</th>
+                <th>ACTION</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for rec2 in rec2s %}
+            <tr>
+                <td>{{ rec2.id }}</td>
+                <td>{{ rec2.texte |raw }}</td>
+                <td>{{ rec2.date ? rec2.date|date('Y-m-d') : '' }}</td>
+                <td>{{ rec2.employee.id }}</td>
+
+                <td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('rec2_show', {'id': rec2.id}) }}">show</a>
+
+                    <a href="{{ path('rec2_edit', {'id': rec2.id,'iduser': app.user.id}) }}">edit</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('rec2_new', {'iduser': app.user.id}) }}">Create new</a>
+    {% endif %}
+    {% if is_granted('ROLE_EMPLOYER') %}
+    <a href="{{ path('rec2_newuser', {'iduser': app.user.id}) }}">Create new</a>
+    {% endif %}
+
+
+{% endblock %}

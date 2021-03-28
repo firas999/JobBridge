@@ -1,0 +1,41 @@
+{% extends 'base2.html.twig' %}
+
+
+{% block title %}Rec2 indexUSER{% endblock %}
+
+{% block body %}
+<h1>Rec2 index</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Texte</th>
+        <th>Date</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for rec2 in rec2s %}
+    <tr>
+        <td>{{ rec2.id }}</td>
+        <td>{{ rec2.texte |raw }}</td>
+        <td>{{ rec2.date ? rec2.date|date('Y-m-d') : '' }}</td>
+        <td>
+            {% if is_granted('ROLE_EMPLOYER') %}
+                <a href="{{ path('rec2_show', {'id': rec2.id}) }}">show</a>
+
+
+            {% endif %}
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="4">no records found</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+    <a href="{{ path('rec2_newuser', {'iduser': app.user.id}) }}">Create new</a>
+{% endblock %}

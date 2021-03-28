@@ -1,0 +1,39 @@
+
+
+
+
+
+
+<div class="row">
+
+    <div class="col-lg-8">
+
+        {{ form_start(form,{'attr':{'form-control':'form-control'}}) }}
+        {{ form_widget(form.diplome,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR diplome *'}}) }}
+        {{ form_widget(form.entreprise,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR entreprise *'}}) }}
+        {{ form_widget(form.typedecontrat,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR typedecontrat *'}}) }}
+        {{ form_widget(form.posteoccupe,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR posteoccupe *'}}) }}
+        <div class="col-offset-5">
+            {{ form_widget(form.date,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR date *'}}) }}
+        </div>
+        {{ form_widget(form.competence,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR competence*'}}) }}
+        {{ form_widget(form.nom,{ 'attr':{'class':'form-control col-md-4','placeholder':'YOUR nom *'}}) }}
+        {{ form_widget(form.prenom,{ 'attr':{'class':'form-control col-md-4','placeholder':'YOUR prenom *'}}) }}
+        {{ form_widget(form.motdepasse,{ 'attr':{'class':'form-control col-md-4','placeholder':'YOUR motdepasse *'}}) }}
+        {{ form_widget(form.imageFile,{ 'attr':{'class':'form-control col-md-4','placeholder':'YOUR image *'}}) }}
+
+        {{ form_rest(form) }}
+
+        <div class="col-md-offset-5" > <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn ">{{ button_label|default('Save') }}
+                    </button>
+                </div>
+
+                {{ form_end(form) }}
+
+            </div>
+
+        </form>
+    </div>
+
+    </div>
+</div>

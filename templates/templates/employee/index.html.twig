@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employee index{% endblock %}
+
+{% block body %}
+    <h1>Employee index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Motdepasse</th>
+                <th>Diplome</th>
+                <th>Entreprise</th>
+                <th>Typedecontrat</th>
+                <th>Posteoccupe</th>
+                <th>Date</th>
+                <th>Competence</th>
+                <th>Images</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+            <tr>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.nom }}</td>
+                <td>{{ employee.prenom }}</td>
+                <td>{{ employee.motdepasse }}</td>
+
+                <td>{{ employee.diplome }}</td>
+                <td>{{ employee.entreprise }}</td>
+                <td>{{ employee.typedecontrat }}</td>
+                <td>{{ employee.posteoccupe }}</td>
+                <td>{{ employee.date ? employee.date|date('Y-m-d') : '' }}</td>
+                <td>{{ employee.competence }}</td>
+                <td> <img id="img"  class="card-img-top img-fluid" width="20" src="/uploads/{{employee.img}}"></td>
+                <td>
+                    <a href="{{ path('employee_show', {'id': employee.id}) }}">show</a>
+                    <a href="{{ path('employee_edit', {'id': employee.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('employee_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,48 @@
+
+
+
+
+
+
+<div class="row">
+
+    <div class="col-lg-8">
+
+               {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                {{ form_widget(form.secteur,{ 'label':'','attr':{'class':'form-control valid','placeholder':'YOUR secteur *'}}) }}
+                {{ form_errors(form.secteur) }}
+                {{ form_widget(form.siteweb,{ 'label':'','attr':{'class':'form-control valid','placeholder':'YOUR siteweb *'}}) }}
+                {{ form_errors(form.siteweb) }}
+                {{ form_widget(form.tailleentreprise,{ 'label':'','attr':{'class':'form-control valid','placeholder':'tailleentreprise *'}}) }}
+                {{ form_errors(form.tailleentreprise) }}
+                {{ form_widget(form.numerotelephone,{ 'label':'','attr':{'class':'form-control valid','placeholder':'numerotelephone *'}}) }}
+                {{ form_errors(form.numerotelephone) }}
+                {{ form_widget(form.nom,{ 'attr':{'class':'form-control valid','placeholder':'YOUR nom *'}}) }}
+                {{ form_errors(form.nom) }}
+
+                {{ form_widget(form.prenom,{ 'attr':{'class':'form-control valid','placeholder':'YOUR prenom *'}}) }}
+                {{ form_errors(form.prenom) }}
+                {{ form_widget(form.motdepasse,{ 'attr':{'class':'form-control valid','placeholder':'YOUR motdepasse *'}}) }}
+                {{ form_errors(form.motdepasse) }}
+                {{ form_widget(form.type,{ 'attr':{'class':'form-control valid','placeholder':'YOUR type *'}}) }}
+                {{ form_errors(form.type) }}
+                {{ form_widget(form.imageFile,{ 'attr':{'class':'form-control valid','placeholder':'YOUR image *'}}) }}
+
+                <div class="col-md-offset-5" > <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn ">{{ button_label|default('Save') }}
+                    </button>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form_widget(form.secteur,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR secteur *'}}) }}
+
+                    </div>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+
+        </form>
+    </div>
+
+    </div>
+</div>

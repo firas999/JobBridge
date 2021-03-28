@@ -1,0 +1,75 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Employer{% endblock %}
+
+{% block body %}
+    <h1>Candidat</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ employee.id }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ employee.nom }}</td>
+        </tr>
+        <tr>
+            <th>Prenom</th>
+            <td>{{ employee.prenom }}</td>
+        </tr>
+        <tr>
+            <th>Motdepasse</th>
+            <td>{{ employee.motdepasse }}</td>
+        </tr>
+
+        <tr>
+            <th>entreprise</th>
+            <td>{{ employee.entreprise }}</td>
+        </tr>
+        <tr>
+            <th>typedecontrat</th>
+            <td>{{ employee.typedecontrat }}</td>
+        </tr>
+        <tr>
+            <th>posteoccupe</th>
+            <td>{{ employee.posteoccupe }}</td>
+        </tr>
+        <tr>
+            <th>date</th>
+            <td>{{ employee.date ? employee.date|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>competence</th>
+            <td>{{ employee.competence }}</td>
+        </tr>
+
+        <tr>
+            <th>image</th>
+            <td><img id="img"  style="max-width: 100px; max-height: 100px;" class="card-img-top img-fluid" src="/uploads/{{employee.img}}"> </td>
+        </tr>
+
+
+
+        </tbody>
+
+    </table>
+    <script type="text/javascript">
+        function imprimer_page(){
+            window.print();
+        }
+    </script>
+
+    <form>
+        <input id="impression"  class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" name="impression" type="button" onclick="imprimer_page()" value="Imprimer cette page" />
+    </form>
+
+    {% if app.user.id == employee.id%}
+    <a class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" href="{{ path('employeefront_index') }}">back to list</a>
+    <br>
+    <a class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" href="{{ path('employeefront_edit', {'id': employee.id } ) }}">edit</a>
+
+    {{ include('employee_front/_delete.html.twig') }}
+    {% endif %}
+{% endblock %}

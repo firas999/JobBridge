@@ -1,0 +1,74 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Candidat{% endblock %}
+
+{% block body %}
+    <h1>Candidat</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ candidat.id }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ candidat.nom }}</td>
+        </tr>
+        <tr>
+            <th>Prenom</th>
+            <td>{{ candidat.prenom }}</td>
+        </tr>
+        <tr>
+            <th>Motdepasse</th>
+            <td>{{ candidat.motdepasse }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ candidat.type }}</td>
+        </tr>
+        <tr>
+            <th>Secteur</th>
+            <td>{{ candidat.secteur }}</td>
+        </tr>
+        <tr>
+            <th>Siteweb</th>
+            <td>{{ candidat.siteweb }}</td>
+        </tr>
+        <tr>
+            <th>Tailleentreprise</th>
+            <td>{{ candidat.tailleentreprise }}</td>
+        </tr>
+        <tr>
+            <th>Numerotelephone</th>
+            <td>{{ candidat.numerotelephone }}</td>
+        </tr>
+        <tr>
+            <th>image</th>
+            <td><img id="img"  style="max-width: 100px; max-height: 100px;" class="card-img-top img-fluid" src="/uploads/{{candidat.img}}" alt=""> </td>
+        </tr>
+
+
+
+        </tbody>
+
+    </table>
+    <script type="text/javascript">
+        function imprimer_page(){
+            window.print();
+        }
+    </script>
+
+    <form>
+        <input id="impression"  class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" name="impression" type="button" onclick="imprimer_page()" value="Imprimer cette page" />
+    </form>
+
+    <a class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"   href="{{ path('candidat_cvFront', {'id': candidat.id}) }}"> <i class="feather icon-edit-2"></i> cv</a>
+    <a class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" href="{{ path('candidatfront_index') }}">back to list</a>
+    <br>
+    {% if app.user.id == candidat.id%}
+    <a class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" href="{{ path('candidatfront_edit', {'id': candidat.id } ) }}">edit</a>
+
+    {{ include('candidat_front/_delete.html.twig') }}
+    {% endif %}
+{% endblock %}

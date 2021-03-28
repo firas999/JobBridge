@@ -1,0 +1,14 @@
+{% extends 'base2.html.twig' %}
+
+
+
+{% block title %}New employee{% endblock %}
+
+{% block body %}
+    <h1>Create new employee</h1>
+
+    {{ include('employee_front/_form.html.twig') }}
+<div class="form-group mt-3">
+    <a  class="button button-contactForm boxed-btn" href="{{ path('employeefront_index') }}">back to list</a>
+</div>
+{% endblock %}

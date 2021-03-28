@@ -1,0 +1,15 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}New Rec2{% endblock %}
+
+{% block body %}
+    <h1>Create new Rec2</h1>
+
+    {{ include('rec2/_form.html.twig') }}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('rec2_index',{'iduser': app.user.id}) }}">back to list</a>
+    {% endif %}
+    {% if is_granted('ROLE_EMPLOYER') %}
+        <a href="{{ path('rec2_indexuser',{'iduser': app.user.id}) }}">back to list</a>
+    {% endif %}
+{% endblock %}

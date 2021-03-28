@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+
+    {{ form_widget(form.texte,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR diplome *'}}) }}
+    {{ form_widget(form.date,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR entreprise *'}}) }}
+    {{ form_widget(form.employee,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR typedecontrat *'}}) }}
+
+{{ form_rest(form) }}
+<div class="col-md-offset-5" > <button class="btn btn-primary mt30 btn-black ">{{ button_label|default('Save') }}</button> </div>
+
+{{ form_end(form) }}
+
+{{ form_end(form) }}

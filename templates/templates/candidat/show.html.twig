@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidat{% endblock %}
+
+{% block body %}
+    <h1>Candidat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ candidat.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ candidat.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ candidat.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Motdepasse</th>
+                <td>{{ candidat.motdepasse }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ candidat.type }}</td>
+            </tr>
+            <tr>
+                <th>Secteur</th>
+                <td>{{ candidat.secteur }}</td>
+            </tr>
+            <tr>
+                <th>Siteweb</th>
+                <td>{{ candidat.siteweb }}</td>
+            </tr>
+            <tr>
+                <th>Tailleentreprise</th>
+                <td>{{ candidat.tailleentreprise }}</td>
+            </tr>
+            <tr>
+                <th>Numerotelephone</th>
+                <td>{{ candidat.numerotelephone }}</td>
+            </tr>
+            <tr>
+                <th>image</th>
+                <td><img id="img"  class="card-img-top img-fluid" width="20" src="/uploads/{{candidat.img}}" alt=""></td>
+            </tr>
+
+
+
+        </tbody>
+
+    </table>
+    <script type="text/javascript">
+        function imprimer_page(){
+            window.print();
+        }
+    </script>
+    <form>
+        <input id="impression"  class="btn" name="impression" type="button" onclick="imprimer_page()" value="Imprimer cette page" />
+    </form>
+
+    <br>
+    <a class="btn btn-icon btn-icon rounded-circle btn-primary mr-1"   href="{{ path('candidat_cvFront', {'id': candidat.id}) }}"> <i class="feather icon-edit-2"></i> cv</a>
+    <br>
+    <a href="{{ path('candidat_index' ) }}">back to list</a>
+
+    <a href="{{ path('candidat_edit', {'id': candidat.id } ) }}">edit</a>
+
+    {{ include('candidat/_delete_form.html.twig') }}
+{% endblock %}
+

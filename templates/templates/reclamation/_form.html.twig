@@ -1,0 +1,9 @@
+{{ form_start(form,{'attr':{'form-control':'form-control'}}) }}
+    {{ form_widget(form.text,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR text *'}}) }}
+    {{ form_widget(form.datereclamation,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR datereclamation *'}}) }}
+    {{ form_widget(form.employee,{ 'label':'','attr':{'class':'form-control col-md-4','placeholder':'YOUR employee *'}}) }}
+
+{{ form_rest(form) }}
+<div class="col-md-offset-5" > <button class="btn btn-primary mt30 btn-black ">{{ button_label|default('Save') }}</button> </div>
+
+{{ form_end(form) }}
