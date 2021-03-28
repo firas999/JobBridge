@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReclamationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use APP\Entity\Employee;
 
 /**
  * @ORM\Entity(repositoryClass=ReclamationRepository::class)
@@ -18,57 +19,58 @@ class Reclamation
     private $id;
 
     /**
-     * @ORM\Column(type="bigint")
+     * @ORM\Column(type="string", length=255)
      */
-    private $IdUtilisateur;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $Description;
+    private $text;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $DateReclamation;
+    private $datereclamation;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="employee")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $employee;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdUtilisateur(): ?string
+    public function getText(): ?string
     {
-        return $this->IdUtilisateur;
+        return $this->text;
     }
 
-    public function setIdUtilisateur(string $IdUtilisateur): self
+    public function setText(string $text): self
     {
-        $this->IdUtilisateur = $IdUtilisateur;
+        $this->text = $text;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDatereclamation(): ?\DateTimeInterface
     {
-        return $this->Description;
+        return $this->datereclamation;
     }
 
-    public function setDescription(string $Description): self
+    public function setDatereclamation(\DateTimeInterface $datereclamation): self
     {
-        $this->Description = $Description;
+        $this->datereclamation = $datereclamation;
 
         return $this;
     }
 
-    public function getDateReclamation(): ?\DateTimeInterface
+    public function getEmployee(): ?Employee
     {
-        return $this->DateReclamation;
+        return $this->employee;
     }
 
-    public function setDateReclamation(\DateTimeInterface $DateReclamation): self
+    public function setEmployee(?Employee $employee): self
     {
-        $this->DateReclamation = $DateReclamation;
+        $this->employee = $employee;
 
         return $this;
     }
