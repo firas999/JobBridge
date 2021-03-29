@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\OffreEmploiRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=OffreEmploiRepository::class)
@@ -19,34 +21,52 @@ class OffreEmploi
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Type obligatoire")
+
      */
     private $Type;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Experience obligatoire")
      */
     private $Experience;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Exigence obligatoire")
      */
     private $Exigence;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Poste obligatoire")
      */
     private $Poste;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Salaire obligatoire")
+     * @Assert\Positive(message="Salaire doit etre un nombre positive")
      */
     private $Salaire;
 
     /**
      * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="OffresEmploi")
+     * @Assert\NotBlank(message="entreprise obligatoire")
      * @ORM\JoinColumn(nullable=false)
      */
     private $entreprise;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $likeC;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $dislikeC;
 
     public function getId(): ?int
     {
@@ -58,7 +78,7 @@ class OffreEmploi
         return $this->Type;
     }
 
-    public function setType(string $Type): self
+    public function setType(?string $Type): self
     {
         $this->Type = $Type;
 
@@ -70,7 +90,7 @@ class OffreEmploi
         return $this->Experience;
     }
 
-    public function setExperience(string $Experience): self
+    public function setExperience(?string $Experience): self
     {
         $this->Experience = $Experience;
 
@@ -82,7 +102,7 @@ class OffreEmploi
         return $this->Exigence;
     }
 
-    public function setExigence(string $Exigence): self
+    public function setExigence(?string $Exigence): self
     {
         $this->Exigence = $Exigence;
 
@@ -94,7 +114,7 @@ class OffreEmploi
         return $this->Poste;
     }
 
-    public function setPoste(string $Poste): self
+    public function setPoste(?string $Poste): self
     {
         $this->Poste = $Poste;
 
@@ -106,7 +126,7 @@ class OffreEmploi
         return $this->Salaire;
     }
 
-    public function setSalaire(int $Salaire): self
+    public function setSalaire(?int $Salaire): self
     {
         $this->Salaire = $Salaire;
 
@@ -121,6 +141,30 @@ class OffreEmploi
     public function setEntreprise(?Entreprise $entreprise): self
     {
         $this->entreprise = $entreprise;
+
+        return $this;
+    }
+
+    public function getLikeC(): ?int
+    {
+        return $this->likeC;
+    }
+
+    public function setLikeC(?int $likeC): self
+    {
+        $this->likeC = $likeC;
+
+        return $this;
+    }
+
+    public function getDislikeC(): ?int
+    {
+        return $this->dislikeC;
+    }
+
+    public function setDislikeC(int $dislikeC): self
+    {
+        $this->dislikeC = $dislikeC;
 
         return $this;
     }

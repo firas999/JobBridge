@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\CandidatStageRepository;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,22 +19,14 @@ class CandidatStage
 
 
     /**
-     * @ORM\Column(type="datetime")
-     * @Assert\Range(
-     *      min = "now",
-     *      minMessage = "Cette valeur doit être le '{{ limit }}' ou plus."
-     * )
+     * @ORM\Column(type="date")
      */
     private $DateCandidature;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="ce champs est obligatoire")
-     * @Assert\Email(
-     *     message = "Cette adresse '{{ value }}' invalide."
-     * )
      */
-    private $Email;
+    private $TypeStage;
 
     /**
      * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="candidatStage")
@@ -91,14 +82,14 @@ class CandidatStage
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getTypeStage(): ?string
     {
-        return $this->Email;
+        return $this->TypeStage;
     }
 
-    public function setEmail(?string $Email): self
+    public function setTypeStage(string $TypeStage): self
     {
-        $this->Email = $Email;
+        $this->TypeStage = $TypeStage;
 
         return $this;
     }

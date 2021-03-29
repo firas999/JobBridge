@@ -52,11 +52,6 @@ class Stagiaire
      */
     private $candidatStage;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $nom;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -153,17 +148,5 @@ class Stagiaire
     public function __toString(){
         $StringId=(string)$this->id;
         return $StringId;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(?string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
     }
 }

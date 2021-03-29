@@ -70,7 +70,7 @@ class Entreprise
     private $OffresEmploi;
 
     /**
-     * @ORM\OneToOne(targetEntity=CandidatEmploi::class, mappedBy="IDEntreprise", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=CandidatEmploi::class, mappedBy="IDEntreprise", )
      */
     private $candidatEmploi;
 

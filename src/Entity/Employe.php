@@ -48,7 +48,7 @@ class Employe
     private $Exerience;
 
     /**
-     * @ORM\OneToOne(targetEntity=CandidatEmploi::class, mappedBy="IdEmploye", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=CandidatEmploi::class, mappedBy="IdEmploye",)
      */
     private $candidatEmploi;
 
@@ -154,6 +154,10 @@ class Employe
         $this->candidatEmploi = $candidatEmploi;
 
         return $this;
+    }
+    public function __toString(){
+        $StringId=(string)$this->id;
+        return $StringId;
     }
 
     public function getNom(): ?string

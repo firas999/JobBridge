@@ -36,6 +36,14 @@ class CandidatEmploiRepository extends ServiceEntityRepository
     }
     */
 
+    public function findByASC()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.DateCandiature', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     /*
     public function findOneBySomeField($value): ?CandidatEmploi
     {

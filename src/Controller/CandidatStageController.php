@@ -2,17 +2,14 @@
 
 namespace App\Controller;
 
-
 use App\Entity\CandidatStage;
 use App\Form\CandidatStageType;
 use App\Repository\CandidatStageRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mailer\Transport;
-use Symfony\Component\Mailer\Mailer;
-use Symfony\Component\Mime\Email;
+
 /**
  * @Route("/candidat/stage")
  */
@@ -41,8 +38,7 @@ class CandidatStageController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($candidatStage);
             $entityManager->flush();
-            
-            $this->addFlash('info','Mail sent successfully');
+
             return $this->redirectToRoute('candidat_stage_index');
         }
 
@@ -51,42 +47,6 @@ class CandidatStageController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    /**
-     * @Route("/calendar", name="candidat_stage_callendar")
-     */
-    public function calendar(CandidatStageRepository $calendar)
-    {
-        $events = $calendar->findAll();
-
-        $rdvs = [];
-
-        foreach($events as $event){
-            $rdvs[] = [
-                'id' => $event->getId(),
-                'start' => $event->getDateCandidature()->format('Y-m-d H:i:s'),
-                'end' => $event->getDateCandidature()->format('Y-m-d H:i:s'),
-                'title' => $event->getEmail(),
-
-            ];
-        }
-
-        $data = json_encode($rdvs);
-
-        return $this->render('candidat_stage/calendar.html.twig', compact('data'));
-    }
-
-    /**
-     * @Route("/news", name="offre_stage_news")
-     */
-    public function tri(CandidatStageRepository $offreStageRepository)
-    {
-        $student=$this->getDoctrine()->getRepository(CandidatStage::class)->findByASC();
-        return $this->render('candidat_stage/index.html.twig', [
-            'candidat_stages' => $student,
-        ]);
-    }
-    
-
 
     /**
      * @Route("/{id}", name="candidat_stage_show", methods={"GET"})
@@ -131,6 +91,4 @@ class CandidatStageController extends AbstractController
 
         return $this->redirectToRoute('candidat_stage_index');
     }
-   
-
 }
