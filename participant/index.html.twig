@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Participants{% endblock %}
+
+{% block body %}
+    <h1>Participants</h1>
+Chercher   :  <input type="text" name="AfficherClasse" onkeyup="myFunction()" placeholder="Chercher par nom"  id="myInput" >
+
+    <table class="table" id="customers">
+        <thead>
+            <tr>
+                <th>Identifiant</th>
+                <th>Nom Evenement</th>
+                <th>Type de Participant</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Adresse Mail</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for participant in participants %}
+            <tr>
+                <td>{{ participant.id }}</td>
+                <td>{{ participant.idEvenement.nom}}</td>
+
+                <td>{{ participant.typeParticipant }}</td>
+                <td>{{ participant.Nom }}</td>
+                <td>{{ participant.prenom }}</td>
+                <td>{{ participant.mail }}</td>
+                <td>
+                    <a href="{{ path('participant_show', {'id': participant.id}) }}">Voir</a>
+                    <a href="{{ path('participant_edit', {'id': participant.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('participant_stat') }}">statistique</a><br>
+    <a href="{{ path('participant_new') }}">Ajouter un participant</a><br>
+    <a href="{{ path('offre_emploi_news') }}">tri</a><br>
+    <script type="text/javascript">
+        function imprimer_page(){
+            window.print();
+        }
+    </script>
+
+    <form>
+        <input id="impression" name="impression" type="button" onclick="imprimer_page()" value="Imprimer cette page" />
+    </form>
+       <script>
+
+
+
+    function myFunction() {
+  var input, filter, table, tr, td, i,j, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("customers");
+  tr = table.getElementsByTagName("tr");
+//   alert(td.length);
+  for (i = 0; i < tr.length; i++) {
+    td= tr[i].getElementsByTagName("td")[1];
+    
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }   
+  }  
+}
+
+
+</script>
+{% endblock %}

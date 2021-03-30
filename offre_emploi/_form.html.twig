@@ -1,0 +1,39 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+<table id="customers">
+    <tr>
+       <td>{{form_label(form.Type,"Type")  }}</td>
+            <td>{{ form_widget(form.Type)}}</td>
+    </tr>
+    <tr>
+        <td>{{form_label(form.Experience,"Experience")  }}</td>
+            <td>{{ form_widget(form.Experience)}}</td>
+    </tr>
+    <tr>
+        <td>{{form_label(form.Exigence,"Exigence")  }}</td>
+            <td>{{ form_widget(form.Exigence)}}</td>
+    </tr>
+    <tr>
+        <td>{{form_label(form.Poste,"Poste")  }}</td>
+            <td>{{ form_widget(form.Poste)}}</td>
+    </tr>
+    <tr>
+        <td>{{form_label(form.Salaire,"Salaire")  }}</td>
+            <td>{{ form_widget(form.Salaire)}}</td>
+    </tr>
+    <tr>
+        <td>{{form_label(form.entreprise,"entreprise")  }}</td>
+        <td>{{ form_widget(form.entreprise)}}</td>
+    </tr>
+    <td> 
+        {{ form_errors(form.Type) }}
+        {{ form_errors(form.Experience) }}
+        {{ form_errors(form.Exigence) }}
+        {{ form_errors(form.Poste) }}
+        {{ form_errors(form.Salaire) }}
+        {{ form_errors(form.entreprise) }}
+    </td>
+</table>
+{{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('ajouter') }}</button>
+{{ form_end(form) }}
+

@@ -1,0 +1,29 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+  <table id="customers">
+  <tr>
+  <td>{{form_label(form.TypeStage,"Type stage : ")  }}</td>
+        <td>{{ form_widget(form.TypeStage)}}</td>
+        <td id='info'>{{ form_errors(form.TypeStage)}}</td>
+  </tr>
+   <tr>
+  <td>{{form_label(form.Duree,"Durée : ")  }}</td>
+        <td>{{ form_widget(form.Duree)}}</td>
+        <td id='info'>{{ form_errors(form.Duree)}}</td>
+  </tr>
+  <tr>
+  <td>{{form_label(form.Exigence,"Exigence : ")  }}</td>
+        <td>{{ form_widget(form.Exigence)}}</td>
+        <td id='info'>{{ form_errors(form.Exigence)}}</td>
+  </tr>
+  <tr>
+  <td>{{form_label(form.IdEntreprise,"Nom entreprise : ")  }}</td>
+        <td>{{ form_widget(form.IdEntreprise)}}</td>
+        <td id='info'>{{ form_errors(form.IdEntreprise)}}</td>
+  </tr>
+        <tr>
+    </table>
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Ajouter') }}</button>
+    </div>
+{{ form_end(form) }}

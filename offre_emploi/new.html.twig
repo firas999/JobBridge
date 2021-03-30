@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ajouter une  Offre d'Emploi{% endblock %}
+
+{% block body %}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <h1>ajouter une  Offre d'Emploi</h1>
+
+    {{ include('offre_emploi/_form.html.twig') }}
+
+    <a href="{{ path('offre_emploi_index') }}">liste des offres d'emplois</a>
+</div>
+{% endblock %}

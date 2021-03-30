@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New OffreStage{% endblock %}
+{% block stylesheets %}   
+ <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+{% endblock %}
+{% block body %}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+{% block javascripts %}
+<script src="//code.jquery.com/jquery.js"></script>
+<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+{% endblock %}
+    <h1>Ajouter offre stage</h1>
+
+    {{ include('offre_stage/_form.html.twig') }}
+
+    <a href="{{ path('offre_stage_index') }}">Liste des offres de stage</a>
+    </div>
+{% endblock %}
+

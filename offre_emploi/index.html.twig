@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offre d'Emploi {% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+{% endblock %}
+{% block body %}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <h1>Offre d'Emploi </h1>
+    {% block javascripts %}
+        <script src="//code.jquery.com/jquery.js"></script>
+        <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+        <div class="alert alert-primary" role="alert" style="margin: auto;">{{ include('@MercurySeriesFlashy/flashy.html.twig') }}</br></div>
+
+    {% endblock %}
+    <form method="post" action="{{ path('offre_emploi_newsss') }}"><label>filtrer par</label>
+   <!--     <input type="text" name="search"> -->
+        <input type="checkbox" id="solidaire" name="search" value="solidaire" >
+        <label for="solidaire"> solidaire</label>
+        <input type="checkbox" id="saisonnier" name="search" value="saisonnier">
+        <label for="saisonnier"> saisonnier</label>
+        <input type="checkbox" id="de Vacances" name="search" value="de Vacances">
+        <label for="de Vacances"> de Vacances	</label>
+        <input type="checkbox" id="long terme" name="search" value="long terme">
+        <label for="long terme"> long terme		</label>
+        <input type="submit" value="filtrer">
+    </form >
+
+    <form method="post" action="{{ path('offre_emploi_newss') }}"><label>Afficher entreprise</label>
+        <input type="text" name="AfficherClasse">
+
+    <!--    <input type="checkbox" id="a" name="AfficherClasse" value="1">
+        <label for="a"> a</label><br>
+        <input type="checkbox" id="xxx" name="AfficherClasse" value="4">
+        <label for="xxx"> xxx</label><br>
+        <input type="checkbox" id="Dq" name="AfficherClasse" value="3">
+        <label for="Dq"> Dq</label><br>-->
+
+
+
+
+        <input type="submit" value="Afficher entrprise">
+    </form >
+
+    <table class="table" id="customers">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Experience</th>
+                <th>Exigence</th>
+                <th>Poste</th>
+                <th>Salaire</th>
+                <th>Entreprise</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offre_emploi in offre_emplois %}
+            <tr>
+                <td>{{ offre_emploi.id }}</td>
+                <td>{{ offre_emploi.Type }}</td>
+                <td>{{ offre_emploi.Experience }}</td>
+                <td>{{ offre_emploi.Exigence }}</td>
+                <td>{{ offre_emploi.Poste }}</td>
+                <td>{{ offre_emploi.Salaire }}</td>
+                <td>{{ offre_emploi.entreprise.nom }}</td>
+
+                <td>
+                    <a href="{{ path('offre_emploi_show', {'id': offre_emploi.id}) }}"><i class="fa fa-address-card" style="font-size:24px"></i></a>
+                    <a href="{{ path('offre_emploi_edit', {'id': offre_emploi.id}) }}"><i class="fa fa-edit" style="font-size:24px"></i></a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('offre_emploi_new') }}">ajouter</a> <br>
+    <a href="{{ path('offre_emploi_news') }}">tri par salaire</a><br>
+        <a href="{{ path('offre_emploi_stat') }}">statistique</a><br>
+    <a href="{{ path('offre_emploi_index') }}">liste des offres d'emplois</a>
+
+
+
+</div>
+{% endblock %}
