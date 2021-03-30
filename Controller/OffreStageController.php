@@ -32,7 +32,7 @@ class OffreStageController extends AbstractController
     /**
         * @Route("/pdf", name="pdf", methods={"GET"})
         */
-        public function pdf(OffreStageRepository $EntrepriseRepository): Response
+        public function pdf(OffreStageRepository $offreStageRepository): Response
         {
             // Configure Dompdf according to your needs
             $pdfOptions = new Options();
@@ -41,7 +41,7 @@ class OffreStageController extends AbstractController
             $dompdf = new Dompdf($pdfOptions);
     // Retrieve the HTML generated in our twig file
             $html = $this->renderView('offre_stage/pdf.html.twig', [
-                'offre_stages' => $EntrepriseRepository->findAll(),
+                'offre_stages' => $offreStageRepository->findAll(),
             ]);
     // Load HTML to Dompdf
             $dompdf->loadHtml($html);

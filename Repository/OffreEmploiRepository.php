@@ -35,7 +35,32 @@ class OffreEmploiRepository extends ServiceEntityRepository
         ;
     }
     */
-
+    public function findByASC()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.Salaire', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+   public function findByClasse($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.Entreprise. = :val')
+            ->setParameter('val',$value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function countForStage(string $type)
+    {
+        return $this->createQueryBuilder('s')
+            ->Where('s.Type = :type')
+            ->setParameter('type', $type)
+            ->select('count(s.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
     /*
     public function findOneBySomeField($value): ?OffreEmploi
     {

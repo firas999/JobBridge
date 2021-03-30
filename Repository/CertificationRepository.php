@@ -6,6 +6,11 @@ use App\Entity\Certification;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+
+
+use App\Repository\CertificationRepository;
+use App\Form\CertificationType;
+
 /**
  * @method Certification|null find($id, $lockMode = null, $lockVersion = null)
  * @method Certification|null findOneBy(array $criteria, array $orderBy = null)
@@ -47,4 +52,67 @@ class CertificationRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findCertifByNom($Nom){
+        return $this->createQueryBuilder('Certification')
+            ->where('Certification.Nom LIKE :nom')
+            ->setParameter('nom', '%'.$Nom.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function findByDate()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.DatePassage', 'Asc')
+            ->getQuery()
+
+            ->getResult()
+            ;
+    }
+    public function findByInf()
+    {
+        return $this->createQueryBuilder('s')
+        ->where('s.Type LIKE :nom')
+        ->setParameter('nom', 'Informatique')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByMec()
+    {
+        return $this->createQueryBuilder('s')
+        ->where('s.Type LIKE :nom')
+        ->setParameter('nom', 'Mecanique')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByElec()
+    {
+        return $this->createQueryBuilder('s')
+        ->where('s.Type LIKE :nom')
+        ->setParameter('nom', 'Electronique')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByJavanbr()
+    {
+        return $this->createQueryBuilder('s')
+        ->where('s.Nom LIKE :nom')
+        ->setParameter('nom', 'JAVA')
+        ->select('COUNT(s.Nom)')
+
+          ->getQuery()
+          
+          ->getResult()
+            ;
+    }
+
+
 }

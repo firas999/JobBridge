@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\CandidatEmploiRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=CandidatEmploiRepository::class)
@@ -18,22 +21,31 @@ class CandidatEmploi
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
+     * @Assert\Range(
+     *      min = "now",
+     *      minMessage = "Cette valeur doit être le  {{ limit }} ou plus."
+     * )
      */
     private $DateCandiature;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(message="email invalide")
+     * @Assert\NotBlank(message="email obligatoire")
      */
     private $email;
 
     /**
-     * @ORM\OneToOne(targetEntity=Employe::class, inversedBy="candidatEmploi", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Employe::class, inversedBy="candidatEmploi",)
+     * @Assert\NotBlank(message="IdEmploye obligatoire")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $IdEmploye;
 
     /**
-     * @ORM\OneToOne(targetEntity=Entreprise::class, inversedBy="candidatEmploi", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="candidatEmploi",)
+     * @Assert\NotBlank(message="IDEntreprise obligatoire")
      * @ORM\JoinColumn(nullable=false)
      */
     private $IDEntreprise;
@@ -43,26 +55,26 @@ class CandidatEmploi
         return $this->id;
     }
 
-    public function getIdemploye(): ?int
+    public function getIdEmploye(): ?Employe
     {
-        return $this->Idemploye;
+        return $this->IdEmploye;
     }
 
-    public function setIdemploye(int $Idemploye): self
+    public function setIdEmploye(?Employe $IdEmploye): self
     {
-        $this->Idemploye = $Idemploye;
+        $this->IdEmploye = $IdEmploye;
 
         return $this;
     }
 
-    public function getIdEntreprise(): ?int
+    public function getIDEntreprise(): ?Entreprise
     {
-        return $this->IdEntreprise;
+        return $this->IDEntreprise;
     }
 
-    public function setIdEntreprise(int $IdEntreprise): self
+    public function setIdEntreprise(?Entreprise $IDEntreprise): self
     {
-        $this->IdEntreprise = $IdEntreprise;
+        $this->IDEntreprise = $IDEntreprise;
 
         return $this;
     }
@@ -84,7 +96,7 @@ class CandidatEmploi
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 

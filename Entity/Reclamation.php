@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\ReclamationRepository;
 use Doctrine\ORM\Mapping as ORM;
-use APP\Entity\Employee;
 
 /**
  * @ORM\Entity(repositoryClass=ReclamationRepository::class)
@@ -19,58 +18,57 @@ class Reclamation
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="bigint")
      */
-    private $text;
+    private $IdUtilisateur;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $Description;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $datereclamation;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="employee")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $employee;
+    private $DateReclamation;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getText(): ?string
+    public function getIdUtilisateur(): ?string
     {
-        return $this->text;
+        return $this->IdUtilisateur;
     }
 
-    public function setText(string $text): self
+    public function setIdUtilisateur(string $IdUtilisateur): self
     {
-        $this->text = $text;
+        $this->IdUtilisateur = $IdUtilisateur;
 
         return $this;
     }
 
-    public function getDatereclamation(): ?\DateTimeInterface
+    public function getDescription(): ?string
     {
-        return $this->datereclamation;
+        return $this->Description;
     }
 
-    public function setDatereclamation(\DateTimeInterface $datereclamation): self
+    public function setDescription(string $Description): self
     {
-        $this->datereclamation = $datereclamation;
+        $this->Description = $Description;
 
         return $this;
     }
 
-    public function getEmployee(): ?Employee
+    public function getDateReclamation(): ?\DateTimeInterface
     {
-        return $this->employee;
+        return $this->DateReclamation;
     }
 
-    public function setEmployee(?Employee $employee): self
+    public function setDateReclamation(\DateTimeInterface $DateReclamation): self
     {
-        $this->employee = $employee;
+        $this->DateReclamation = $DateReclamation;
 
         return $this;
     }

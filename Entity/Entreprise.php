@@ -64,23 +64,23 @@ class Entreprise
      */
     private $Formations;
 
-    /**
+  /**
      * @ORM\OneToMany(targetEntity=OffreEmploi::class, mappedBy="entreprise", orphanRemoval=true)
      */
     private $OffresEmploi;
 
     /**
-     * @ORM\OneToOne(targetEntity=CandidatEmploi::class, mappedBy="IDEntreprise", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=CandidatEmploi::class, mappedBy="IdEntreprise", )
      */
     private $candidatEmploi;
 
-    /**
+  /**
      * @ORM\OneToMany(targetEntity=OffreStage::class, mappedBy="IdEntreprise", orphanRemoval=true)
      */
     private $offreStages;
 
     /**
-     * @ORM\OneToMany(targetEntity=CandidatStage::class, mappedBy="IDEntreprise", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=CandidatStage::class, mappedBy="IdEntreprise", orphanRemoval=true)
      */
 
     private $candidatStage;
@@ -90,6 +90,11 @@ class Entreprise
      */
     private $certifications;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Certification::class, mappedBy="Entreprise", orphanRemoval=true)
+     */
+    private $yes;
+
     public function __construct()
     {
         $this->Articles = new ArrayCollection();
@@ -97,6 +102,7 @@ class Entreprise
         $this->OffresEmploi = new ArrayCollection();
         $this->offreStages = new ArrayCollection();
         $this->certifications = new ArrayCollection();
+        $this->yes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -366,6 +372,36 @@ class Entreprise
             // set the owning side to null (unless already changed)
             if ($certification->getIdEntreprise() === $this) {
                 $certification->setIdEntreprise(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Certification[]
+     */
+    public function getYes(): Collection
+    {
+        return $this->yes;
+    }
+
+    public function addYe(Certification $ye): self
+    {
+        if (!$this->yes->contains($ye)) {
+            $this->yes[] = $ye;
+            $ye->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeYe(Certification $ye): self
+    {
+        if ($this->yes->removeElement($ye)) {
+            // set the owning side to null (unless already changed)
+            if ($ye->getEntreprise() === $this) {
+                $ye->setEntreprise(null);
             }
         }
 

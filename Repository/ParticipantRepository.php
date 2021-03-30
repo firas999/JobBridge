@@ -18,7 +18,23 @@ class ParticipantRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Participant::class);
     }
-
+    public function findByASC()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.Nom', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function countForStage(string $type)
+    {
+        return $this->createQueryBuilder('s')
+            ->Where('s.typeParticipant = :type')
+            ->setParameter('type', $type)
+            ->select('count(s.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
     // /**
     //  * @return Participant[] Returns an array of Participant objects
     //  */
@@ -47,4 +63,15 @@ class ParticipantRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+  /*  public function countlikeNumber()
+    {
+        return $this->createQueryBuilder('r')
+            ->select('count(r.id)')
+            ->andWhere('r.idEvenement = :val')
+            ->setParameter('val', 3)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }*/
 }

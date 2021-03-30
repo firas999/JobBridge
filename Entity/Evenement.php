@@ -3,9 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EvenementRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EvenementRepository::class)
@@ -21,38 +20,54 @@ class Evenement
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ce champs est obligatoire")
      */
     private $Nom;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Ce champs est obligatoire")
      */
-    private $DateEveneement;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Adresse;
+    private $Entreprise;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Ce champs est obligatoire")
      */
     private $Description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="Ce champs est obligatoire")
      */
-    private $Tarif;
+    private $Date;
 
     /**
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="IDevenement", orphanRemoval=true)
+     * @ORM\Column(type="float", nullable=true)
+     * @Assert\NotBlank(message="Ce champs est obligatoire")
+     * @Assert\Positive(message="Prix doit etre un nombre positive")
      */
-    private $participants;
+    private $Prix;
 
-    public function __construct()
-    {
-        $this->participants = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Ce champs est obligatoire")
+     */
+    private $Adresse;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $Cap;
+
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     * @Assert\NotBlank(message="Ce champs est obligatoire")
+     */
+    private $Horaire;
+
+
+
 
     public function getId(): ?int
     {
@@ -71,26 +86,14 @@ class Evenement
         return $this;
     }
 
-    public function getDateEveneement(): ?\DateTimeInterface
+    public function getEntreprise(): ?string
     {
-        return $this->DateEveneement;
+        return $this->Entreprise;
     }
 
-    public function setDateEveneement(\DateTimeInterface $DateEveneement): self
+    public function setEntreprise(string $Entreprise): self
     {
-        $this->DateEveneement = $DateEveneement;
-
-        return $this;
-    }
-
-    public function getAdresse(): ?string
-    {
-        return $this->Adresse;
-    }
-
-    public function setAdresse(string $Adresse): self
-    {
-        $this->Adresse = $Adresse;
+        $this->Entreprise = $Entreprise;
 
         return $this;
     }
@@ -107,45 +110,66 @@ class Evenement
         return $this;
     }
 
-    public function getTarif(): ?int
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->Tarif;
+        return $this->Date;
     }
 
-    public function setTarif(int $Tarif): self
+    public function setDate(\DateTimeInterface $Date): self
     {
-        $this->Tarif = $Tarif;
+        $this->Date = $Date;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Participant[]
-     */
-    public function getParticipants(): Collection
+    public function getPrix(): ?float
     {
-        return $this->participants;
+        return $this->Prix;
     }
 
-    public function addParticipant(Participant $participant): self
+    public function setPrix(?float $Prix): self
     {
-        if (!$this->participants->contains($participant)) {
-            $this->participants[] = $participant;
-            $participant->setIDevenement($this);
-        }
+        $this->Prix = $Prix;
 
         return $this;
     }
 
-    public function removeParticipant(Participant $participant): self
+    public function getAdresse(): ?string
     {
-        if ($this->participants->removeElement($participant)) {
-            // set the owning side to null (unless already changed)
-            if ($participant->getIDevenement() === $this) {
-                $participant->setIDevenement(null);
-            }
-        }
+        return $this->Adresse;
+    }
+
+    public function setAdresse(?string $Adresse): self
+    {
+        $this->Adresse = $Adresse;
 
         return $this;
     }
+
+    public function getCap(): ?int
+    {
+        return $this->Cap;
+    }
+
+    public function setCap(?int $Cap): self
+    {
+        $this->Cap = $Cap;
+
+        return $this;
+    }
+
+    public function getHoraire(): ?\DateTimeInterface
+    {
+        return $this->Horaire;
+    }
+
+    public function setHoraire(?\DateTimeInterface $Horaire): self
+    {
+        $this->Horaire = $Horaire;
+
+        return $this;
+    }
+
+
+
 }

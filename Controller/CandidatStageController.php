@@ -13,6 +13,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Email;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+// Include PhpSpreadsheet required namespaces
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 /**
  * @Route("/candidat/stage")
  */
@@ -27,6 +32,57 @@ class CandidatStageController extends AbstractController
             'candidat_stages' => $candidatStageRepository->findAll(),
         ]);
     }
+     /**
+        * @Route("/excel", name="excel", methods={"GET"})
+        */
+  public function excel()
+  {
+      $spreadsheet = new Spreadsheet();
+      
+      /* @var $sheet \PhpOffice\PhpSpreadsheet\Writer\Xlsx\Worksheet */
+      // on définie les en têtes de nos enregistrements
+      $sheet = $spreadsheet->getActiveSheet();
+      $sheet->setCellValue('A1','ID')
+      ->setCellValue('B1','ID entreprise')
+      ->setCellValue('C1','ID stagiaire')
+      ->setCellValue('D1','Email')
+      ->setCellValue('E1','Date candidature')
+      ;
+      // on récupère toutes les personnes ou on fait une fonction personnalisée à la place du findAll
+      $em = $this->getdoctrine()->getManager();
+      $candidatStage = $em->getRepository(CandidatStage :: class)->findAll();
+      // on place le curseur dans la 2ème position pour ne pas écraser les entêtes ...<br>        
+      $aux = 2;
+      foreach ($candidatStage as $row)
+      // donc pour chaque personne trouvée dans la base de données il met les valeurs au dessous des entêtes
+               {
+         $sheet->setSheetState(0)
+             ->setCellValue('A'.$aux, $row->getId())
+             ->setCellValue('B'.$aux, $row->getIdEntreprise())
+             ->setCellValue('C'.$aux, $row->getIdStagiaire())
+             ->setCellValue('D'.$aux, $row->getEmail())
+             ->setCellValue('E'.$aux, $row->getDateCandidature()) 
+            ;
+      //aux au début était 2 lorsqu'on écrit on l'incrémente pour ne pas écraser à chaque fois
+            $aux++;
+         };
+      $sheet->setTitle("Candidature stage");
+      
+      // Create your Office 2007 Excel (XLSX Format)
+      $writer = new Xlsx($spreadsheet);
+      
+      // Create a Temporary file in the system
+      $fileName = 'Candidature stage.xlsx';
+      $temp_file = tempnam(sys_get_temp_dir(), $fileName);
+      
+      // Create the excel file in the tmp directory of the system
+      $writer->save($temp_file);
+      
+      // Return the excel file as an attachment
+      return $this->file($temp_file, $fileName, ResponseHeaderBag::DISPOSITION_INLINE);
+  }
+
+
 
     /**
      * @Route("/new", name="candidat_stage_new", methods={"GET","POST"})
