@@ -1,0 +1,57 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <table id="customers">
+
+        <tr>
+            <td>{{form_label(form.Nom,"Nom : ")  }}</td>
+            <td>{{ form_widget(form.Nom)}}</td>
+            <td>{{ form_errors(form.Nom)}}</td>
+        </tr>
+
+        <tr>
+            <td>{{form_label(form.Entreprise,"Entreprise : ")  }}</td>
+            <td>{{ form_widget(form.Entreprise)}}</td>
+            <td>{{ form_errors(form.Entreprise)}}</td>
+        </tr>
+        <tr>
+            <td>{{form_label(form.Description,"Description : ")  }}</td>
+            <td>{{ form_widget(form.Description)}}</td>
+            <td>{{ form_errors(form.Description)}}</td>
+        </tr>
+        <tr>
+            <td>{{form_label(form.Date,"Date : ")  }}</td>
+            <td>{{ form_widget(form.Date)}}</td>
+            <td>{{ form_errors(form.Date)}}</td>
+        </tr>
+        <tr>
+            <td>{{form_label(form.Horaire,"Horaire : ")  }}</td>
+            <td>{{ form_widget(form.Horaire)}}</td>
+            <td>{{ form_errors(form.Horaire)}}</td>
+        </tr>
+
+        <tr>
+            <td>{{form_label(form.Adresse,"Adresse : ")  }}</td>
+            <td>{{ form_widget(form.Adresse)}}</td>
+            <td>{{ form_errors(form.Adresse)}}</td>
+        </tr>
+        <tr>
+            <td>{{form_label(form.Prix,"Prix : ")  }}</td>
+            <td>{{ form_widget(form.Prix)}}</td>
+            <td>{{ form_errors(form.Prix)}}</td>
+        </tr>
+
+        <tr>
+            <td>{{form_label(form.Cap,"Capacité : ")  }}</td>
+            <td>{{ form_widget(form.Cap)}}</td>
+            <td>{{ form_errors(form.Cap)}}</td>
+        </tr>
+
+
+    </table>
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+</div>
+{{ form_end(form) }}
+
+
+

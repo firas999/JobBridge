@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CandidatEmploi{% endblock %}
+
+{% block body %}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <h1>Candidature Emploi</h1>
+
+    <table class="table" id="customers">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ candidat_emploi.id }}</td>
+            </tr>
+            <tr>
+                <th>DateCandiature</th>
+                <td>{{ candidat_emploi.DateCandiature ? candidat_emploi.DateCandiature|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ candidat_emploi.email }}</td>
+            </tr>
+            <tr>
+                <th>nom entreprise</th>
+                <td>{{ candidat_emploi.IDEntreprise.nom}}</td>
+            </tr>
+            <tr>
+                <th>nom employe</th>
+                <td>{{ candidat_emploi.IdEmploye.nom}}</td>
+            </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('candidat_emploi_index') }}">liste des candidadture</a>
+
+    <a href="{{ path('candidat_emploi_edit', {'id': candidat_emploi.id}) }}">modifier</a>
+
+    {{ include('candidat_emploi/_delete_form.html.twig') }}
+</div>
+{% endblock %}

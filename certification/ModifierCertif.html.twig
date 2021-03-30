@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CandidatureStageController!{% endblock %}
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4c7aaf;
+  color: white;
+}
+
+
+
+
+
+</style>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+<table id="customers">
+<tr>
+<td> {{form_label(form.Type,"Type")  }}</td>
+<td> {{form_widget(form.Type) }}
+{{ form_errors(form.Type) }}
+
+ </td>
+</tr>
+<tr>
+<td> {{form_label(form.DatePassage,"Date Passage")  }}</td>
+<td> {{form_widget(form.DatePassage) }} 
+{{ form_errors(form.DatePassage) }}
+
+</td>
+</tr>
+<tr>
+<td> {{form_label(form.Prix,"Prix")  }}</td>
+<td> {{form_widget(form.Prix) }}
+{{ form_errors(form.Prix) }}
+ </td>
+</tr>
+<tr>
+ <td>{{form_label(form.Description,"Description")   }}</td>
+<td> {{form_widget(form.Description) }} 
+{{ form_errors(form.Description) }}
+
+</td>
+</tr>
+
+<tr>
+<td> {{form_label(form.Nom,"Nom")  }}</td>
+<td> {{form_widget(form.Nom) }}
+{{ form_errors(form.Nom) }}
+ </td>
+</tr>
+
+<tr>
+<td> {{form_label(form.Entreprise,"Entreprise")  }}</td>
+<td> {{form_widget(form.Entreprise) }}
+{{ form_errors(form.Entreprise) }}
+ </td>
+</tr>
+
+</table>
+{{ form_end(form) }}
+
+</html>
+{% endblock %}
+

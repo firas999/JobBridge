@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CandidatureStageController!{% endblock %}
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4c7aaf;
+  color: white;
+}
+
+
+
+
+
+</style>
+</head>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+<table id="customers">
+<tr>
+<td> {{form_label(form.Certification,"Certification")  }}</td>
+<td> {{form_widget(form.Certification) }}
+{{ form_errors(form.Certification) }}
+
+ </td>
+</tr>
+<tr>
+<td> {{form_label(form.NomParticipant,"Nom Participant")  }}</td>
+<td> {{form_widget(form.NomParticipant) }} 
+{{ form_errors(form.NomParticipant) }}
+
+</td>
+</tr>
+<tr>
+<td> {{form_label(form.PrenomParticipant,"Prenom Particiant")  }}</td>
+<td> {{form_widget(form.PrenomParticipant) }}
+{{ form_errors(form.PrenomParticipant) }}
+ </td>
+</tr>
+<tr>
+ <td>{{form_label(form.DateDemande,"Date")   }}</td>
+<td> {{form_widget(form.DateDemande) }} 
+{{ form_errors(form.DateDemande) }}
+
+</td>
+</tr>
+
+<tr>
+<td> {{form_label(form.ExperienceParticipant,"Experience")  }}</td>
+<td> {{form_widget(form.ExperienceParticipant) }}
+{{ form_errors(form.ExperienceParticipant) }}
+ </td>
+</tr>
+
+<tr>
+<td> {{form_label(form.Email,"Email")  }}</td>
+<td> {{form_widget(form.Email) }}
+{{ form_errors(form.Email) }}
+ </td>
+</tr>
+<tr>
+<td>
+<center>
+{{ form_row(form.captchaCode) }}
+</td>
+</tr>
+</center>
+</table>
+{{ form_end(form) }}
+
+</html>
+{% endblock %}
+

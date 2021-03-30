@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CandidatStage index{% endblock %}
+
+{% block body %}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <h1>Candidature stage </h1>
+ <a class="btn btn-outline-primary" href="{{ path('excel') }}">EXCEL</a>   
+ <a class="btn btn-outline-primary" href="{{ path('offre_stage_news') }}">tri par date</a>
+ <a class="btn btn-outline-primary" href="{{ path('candidat_stage_callendar') }}">calendar</a>
+ <a class="btn btn-outline-primary" href="{{ path('candidat_stage_new') }}">Ajouter candidature stage</a>
+    <input type="text" name="AfficherClasse" onkeyup="myFunction()" placeholder="Recherche "  id="myInput" >
+    <table class="table" id="customers">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom stagiaire</th>
+                <th>Nom entreprise </th>
+                <th>Email</th>
+                <th>Date candidature</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for candidat_stage in candidat_stages %}
+            <tr>
+                <td>{{ candidat_stage.id }}</td>
+                  <td>{{ candidat_stage.IDStagiaire.nom }}</td>
+                <td>{{ candidat_stage.IDEntreprise.nom }}</td>
+                 <td>{{ candidat_stage.Email }}</td>
+                <td>{{ candidat_stage.DateCandidature ? candidat_stage.DateCandidature|date('H:i d-m-Y') : '' }}</td>
+                <td>
+                    <a href="{{ path('candidat_stage_show', {'id': candidat_stage.id}) }}"><i class="fa fa-address-card" style="font-size:24px"></i></a>
+                    <a href="{{ path('candidat_stage_edit', {'id': candidat_stage.id}) }}"><i class="fa fa-edit" style="font-size:24px"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+    
+    
+
+    
+    </div>
+    <script>
+
+
+
+    function myFunction() {
+  var input, filter, table, tr, td, i,j, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("customers");
+  tr = table.getElementsByTagName("tr");
+//   alert(td.length);
+  for (i = 0; i < tr.length; i++) {
+    td= tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }   
+  }  
+}
+
+
+</script>
+{% endblock %}

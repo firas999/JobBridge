@@ -1,0 +1,31 @@
+        <h1>Candidature Emploi </h1>
+        <table class="table" id="customers">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateCandiature</th>
+                <th>Email</th>
+                <th>nom entreprise</th>
+                <th>id employe</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for candidat_emploi in candidat_emplois %}
+                <tr>
+                    <td>{{ candidat_emploi.id }}</td>
+                    <td>{{ candidat_emploi.DateCandiature ? candidat_emploi.DateCandiature|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ candidat_emploi.email }}</td>
+                    <td>{{ candidat_emploi.IDEntreprise.nom }}</td>
+                    <td>{{ candidat_emploi.IdEmploye.nom }}</td>
+
+
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>

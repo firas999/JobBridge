@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenements{% endblock %}
+
+{% block body %}
+
+    <h1>Evenements à venir</h1>
+   
+    <table class="table" id="customers">
+        <thead>
+            <tr>
+                <th>Numéro</th>
+                <th>Nom</th>
+                <th>Entreprise</th>
+                <th>Description</th>
+                <th>Date de l'évenement</th>
+                <th>Horaire</th>
+                <th>Prix</th>
+                <th>Adresse</th>
+                <th>Capacité Maximale</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.id }}</td>
+                <td>{{ evenement.Nom }}</td>
+                <td>{{ evenement.Entreprise }}</td>
+                <td>{{ evenement.Description }}</td>
+                <td>{{ evenement.Date ? evenement.Date|date('Y-m-d') : '' }}</td>
+                <td>{{ evenement.Horaire|date('H:i')}}</td>
+                <td>{{ evenement.Prix }}</td>
+                <td>{{ evenement.Adresse }}</td>
+                <td>{{ evenement.Cap }}</td>
+
+
+
+                <td>
+                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">Voir</a>
+                    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    {{ knp_pagination_render(evenements) }}
+    </br>
+    <a href="{{ path('evenement_new') }}">Ajouter un évenement</a>
+    <script type="text/javascript">
+        function imprimer_page(){
+            window.print();
+        }
+    </script>
+
+    <form>
+        <input id="impression" name="impression" type="button" onclick="imprimer_page()" value="Imprimer cette page" />
+    </form>
+
+ 
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CandidatStage{% endblock %}
+
+{% block body %}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+    <h1>Ajouter candidature stage</h1>
+
+    {{ include('candidat_stage/_form.html.twig') }}
+
+    <a href="{{ path('candidat_stage_index') }}">Liste des candidatures stages</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CandidatStage{% endblock %}
+
+{% block body %}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+    <h1>CandidatStage</h1>
+
+    <table class="table" id="customers">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ candidat_stage.id }}</td>
+            </tr>
+               <tr>
+                <th>nom stagiaire</th>
+                <td>{{ candidat_stage.IDStagiaire.nom }}</td>
+            </tr>
+              <tr>
+                <th>Nom entreprise</th>
+                <td>{{ candidat_stage.IDEntreprise.nom }}</td>
+            </tr>
+             
+               <tr>
+                <th>Email</th>
+                <td>{{ candidat_stage.Email }}</td>
+            </tr>
+            <tr>
+                <th>DateCandidature</th>
+                <td>{{ candidat_stage.DateCandidature ? candidat_stage.DateCandidature|date('Y-m-d') : '' }}</td>
+            </tr>
+         
+            
+        </tbody>
+    </table>
+
+    <a href="{{ path('candidat_stage_index') }}">Liste des candidatures stages</a>
+
+    <a href="{{ path('candidat_stage_edit', {'id': candidat_stage.id}) }}">Modifier</a>
+
+    {{ include('candidat_stage/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

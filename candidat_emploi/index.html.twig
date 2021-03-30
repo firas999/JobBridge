@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+{% block title %}Candidature Emploi {% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+    {% endblock %}
+
+{% block body %}
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <h1>Candidature Emploi </h1>
+    {% block javascripts %}
+        <script src="//code.jquery.com/jquery.js"></script>
+        <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+        <div class="alert alert-primary" role="alert" style="margin: auto;">{{ include('@MercurySeriesFlashy/flashy.html.twig') }}</br></div>
+
+    {% endblock %}
+    <input type="text" name="AfficherClasse" onkeyup="myFunction()" placeholder="mail "  id="myInput" >
+    <table class="table" id="customers">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateCandiature</th>
+                <th>Email</th>
+                <th>nom entreprise</th>
+                <th>id employe</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for candidat_emploi in candidat_emplois %}
+            <tr>
+                <td>{{ candidat_emploi.id }}</td>
+                <td>{{ candidat_emploi.DateCandiature ? candidat_emploi.DateCandiature|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ candidat_emploi.email }}</td>
+                <td>{{ candidat_emploi.IDEntreprise.nom }}</td>
+                <td>{{ candidat_emploi.IdEmploye.nom }}</td>
+
+
+
+                <td>
+                    <a href="{{ path('candidat_emploi_show', {'id': candidat_emploi.id}) }}"><i class="fa fa-address-card" style="font-size:24px"></i></a>
+                    <a href="{{ path('candidat_emploi_edit', {'id': candidat_emploi.id}) }}"><i class="fa fa-edit" style="font-size:24px"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('candidat_emploi_new') }}">ajouter</a> <br>
+    <a href="{{ path('candidat_emploi_news') }}">tri par date</a> <br>
+    <a href="{{ path('candidat_emploi_index') }}">liste </a> <br>
+    <a href="{{ path('candidat_emploi_callendar') }}">callendar </a> <br>
+    <a href="{{ path('imprimer') }}">pdf </a> <br>
+
+
+
+</div>
+    <script>
+
+
+
+        function myFunction() {
+            var input, filter, table, tr, td, i,j, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("customers");
+            tr = table.getElementsByTagName("tr");
+//   alert(td.length);
+            for (i = 0; i < tr.length; i++) {
+                td= tr[i].getElementsByTagName("td")[2];
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+
+    </script>
+{% endblock %}
