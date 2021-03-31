@@ -65,12 +65,12 @@ class Entreprise
     private $Formations;
 
   /**
-     * @ORM\OneToMany(targetEntity=OffreEmploi::class, mappedBy="entreprise", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=OffreEmploi::class, mappedBy="IdEntreprise", orphanRemoval=true)
      */
     private $OffresEmploi;
 
     /**
-     * @ORM\OneToMany(targetEntity=CandidatEmploi::class, mappedBy="IdEntreprise", )
+     * @ORM\OneToMany(targetEntity=CandidatEmploi::class, mappedBy="IdEntreprise", orphanRemoval=true)
      */
     private $candidatEmploi;
 

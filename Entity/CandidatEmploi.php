@@ -42,13 +42,14 @@ class CandidatEmploi
      * @ORM\JoinColumn(nullable=false)
      */
     private $IdEmploye;
-
+    
     /**
-     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="candidatEmploi",)
-     * @Assert\NotBlank(message="IDEntreprise obligatoire")
+     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="candidatEmploi")
      * @ORM\JoinColumn(nullable=false)
      */
+    
     private $IDEntreprise;
+
 
     public function getId(): ?int
     {
@@ -67,14 +68,14 @@ class CandidatEmploi
         return $this;
     }
 
-    public function getIDEntreprise(): ?Entreprise
+    public function getIdEntreprise(): ?Entreprise
     {
         return $this->IDEntreprise;
     }
 
-    public function setIdEntreprise(?Entreprise $IDEntreprise): self
+    public function setIdEntreprise(?Entreprise $IdEntreprise): self
     {
-        $this->IDEntreprise = $IDEntreprise;
+        $this->IDEntreprise = $IdEntreprise;
 
         return $this;
     }
