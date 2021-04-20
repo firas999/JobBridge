@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Controllers.ModifierFormationController">
+   <children>
+      <VBox layoutX="143.0" layoutY="86.0" prefHeight="249.0" prefWidth="105.0" spacing="15.0">
+         <children>
+            <Label text="Description" />
+            <Label text="Volume Horaire" />
+            <Label text="Date Formation" />
+            <Label text="adresse" />
+            <Label text="Prix" />
+         </children>
+      </VBox>
+      <VBox layoutX="268.0" layoutY="86.0" prefHeight="217.0" prefWidth="149.0" spacing="7.0">
+         <children>
+            <TextField fx:id="tfDescriptionFormation" />
+            <TextField fx:id="tfVolumeHoraireFormation" layoutX="10.0" layoutY="35.0" />
+            <DatePicker fx:id="tfDateFormation" />
+            <TextField fx:id="tfAdresseFormation" layoutX="10.0" layoutY="85.0" />
+            <TextField fx:id="tfPrixFormation" layoutX="10.0" layoutY="110.0" />
+         </children>
+      </VBox>
+      <CheckBox fx:id="CHBoxPromoFormation" layoutX="240.0" layoutY="323.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="En Promotion" />
+      <Button fx:id="btnUpdateFormation" layoutX="467.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Modifier" />
+      <TextField fx:id="tfIdFormation" layoutX="69.0" layoutY="14.0" />
+   </children>
+</AnchorPane>
