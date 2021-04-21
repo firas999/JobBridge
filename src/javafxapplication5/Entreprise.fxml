@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EntrepriseController">
+<AnchorPane id="AnchorPane" prefHeight="512.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EntrepriseController">
    <children>
       <TableView fx:id="TVentreprise" layoutX="3.0" layoutY="127.0" prefHeight="269.0" prefWidth="883.0">
          <columns>
@@ -30,7 +30,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="btnInsert" layoutX="73.0" layoutY="456.0" mnemonicParsing="false" onAction="#handleButtonAction" onMouseClicked="#addEntreprise" text="Ajouter entreprise" />
+      <Button fx:id="btnInsert" layoutX="74.0" layoutY="486.0" mnemonicParsing="false" onAction="#handleButtonAction" onMouseClicked="#addEntreprise" text="Ajouter entreprise" />
       <TextField fx:id="liveSearchEntreprise" layoutX="111.0" layoutY="81.0" />
       <Label layoutX="19.0" layoutY="85.0" prefHeight="17.0" prefWidth="69.0" text="Chercherez" />
    </children>

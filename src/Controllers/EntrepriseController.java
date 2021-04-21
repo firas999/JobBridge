@@ -113,6 +113,7 @@ public class EntrepriseController implements Initializable {
     @FXML
     private TableColumn tvActions4;
     
+    
 
 
     void DeleteEntreprise() {
@@ -554,7 +555,17 @@ showEntreprise();
         ServiceEntreprise EntrepriseService = new ServiceEntreprise();
         EntrepriseService.modifierChamp("telephone",E.getTelephone().toString(),E.getId());
     }
-            
+
+    @FXML
+    private void pdf(ActionEvent event) {
+    }
+
+    @FXML
+    private void Excel(ActionEvent event) {
+    }
+         
+    
+    
             
             
 }
