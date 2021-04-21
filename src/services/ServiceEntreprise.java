@@ -104,6 +104,7 @@ public class ServiceEntreprise implements Iservices.IserviceEntreprise{
 
     public List afficher() {
         try {
+            
     
            ResultSet rs = conn.createStatement().executeQuery("select * from entreprise");
             while (rs.next()){
