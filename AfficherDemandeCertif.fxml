@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="542.0" prefWidth="830.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherDemandeCertifController">
+    <stylesheets>
+        <URL value="@afficherdemandecertif.css" />
+    </stylesheets>
+   <children>
+      <Button fx:id="ref" layoutX="57.0" layoutY="39.0" mnemonicParsing="false" onAction="#AfficherDmndCert" text="Rafraîchir " />
+      <Button fx:id="AjDmdCertif" layoutX="153.0" layoutY="39.0" mnemonicParsing="false" onAction="#AjDmdCertif1" text="Ajouter" />
+      <TextField fx:id="RecherDCertif" layoutX="535.0" layoutY="32.0" />
+      <TableView fx:id="DemandeCertifTable" layoutX="57.0" layoutY="85.0" prefHeight="390.0" prefWidth="754.0" style="-fx-background-color: red;">
+        <columns>
+          <TableColumn fx:id="idcol" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="certifcol" prefWidth="75.0" text="CERTIF" />
+            <TableColumn fx:id="nom1col" prefWidth="75.0" text="NOM" />
+            <TableColumn fx:id="prenom1col" prefWidth="75.0" text="PRENOM" />
+            <TableColumn fx:id="date1col" prefWidth="75.0" text="DATE" />
+            <TableColumn fx:id="experiencecol" prefWidth="75.0" text="EXPERIENCE" />
+            <TableColumn fx:id="emailcol" prefWidth="75.0" text="EMAIL" />
+            <TableColumn fx:id="SupCol" prefWidth="75.0" text="Supprimer" />
+        </columns>
+      </TableView>
+      <Pagination fx:id="pagination" layoutX="39.0" layoutY="80.0" prefHeight="440.0" prefWidth="778.0" />
+   </children>
+</AnchorPane>
