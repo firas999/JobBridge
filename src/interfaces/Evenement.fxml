@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.EvenementController">
+   <children>
+      <TableView fx:id="table_evenement" layoutX="127.0" layoutY="292.0" prefHeight="200.0" prefWidth="678.0">
+        <columns>
+          <TableColumn fx:id="id_evenement" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nom_evenement" prefWidth="75.0" text="nom" />
+            <TableColumn fx:id="date_evenement" prefWidth="75.0" text="date" />
+            <TableColumn fx:id="adresse_evenement" prefWidth="75.0" text="adresse" />
+            <TableColumn fx:id="description_evenement" prefWidth="75.0" text="description" />
+            <TableColumn fx:id="entreprise_evenement" prefWidth="75.0" text="entreprise" />
+            <TableColumn fx:id="prix_evenement" prefWidth="75.0" text="prix" />
+            <TableColumn fx:id="cap_evenement" prefWidth="75.0" text="cap" />
+            <TableColumn fx:id="horaire_evenement" prefWidth="75.0" text="horaire" />
+        </columns>
+      </TableView>
+      <TextField fx:id="ideven" layoutX="127.0" layoutY="57.0" />
+      <TextField fx:id="nomeven" layoutX="127.0" layoutY="122.0" />
+      <TextField fx:id="adresseeven" layoutX="407.0" layoutY="57.0" />
+      <TextField fx:id="descriptioneven" layoutX="407.0" layoutY="122.0" />
+      <TextField fx:id="entrepriseeven" layoutX="407.0" layoutY="199.0" />
+      <TextField fx:id="prixeven" layoutX="674.0" layoutY="57.0" />
+      <TextField fx:id="capeven" layoutX="674.0" layoutY="122.0" />
+      <TextField fx:id="horaireeven" layoutX="674.0" layoutY="199.0" />
+      <DatePicker fx:id="dateeven" layoutX="115.0" layoutY="199.0" />
+      <Button fx:id="AjouterEven" layoutX="63.0" layoutY="246.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+   </children>
+</AnchorPane>
