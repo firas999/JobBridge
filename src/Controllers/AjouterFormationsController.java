@@ -5,11 +5,13 @@
  */
 package Controllers;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import static java.sql.Date.valueOf;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import javafx.application.Platform;
@@ -23,12 +25,15 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Stop;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
 import models.Entreprise;
 import models.Formation;
+import models.SendMail;
 import org.controlsfx.control.Notifications;
 import services.ServiceFormation;
 import utils.DataSource;
@@ -40,6 +45,7 @@ import utils.DataSource;
  */
 public class AjouterFormationsController implements Initializable {
  public DataSource ds1;
+ public String Email;
     private Connection conn;
     public PreparedStatement st;
     public ResultSet rs;
@@ -62,6 +68,20 @@ public class AjouterFormationsController implements Initializable {
     private TextField idEntreprise;
     @FXML
     private Button btnInsertFormation;
+    @FXML
+    private Button loadIMG;
+    @FXML
+    private TextField IMGPATH;
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -74,7 +94,7 @@ public class AjouterFormationsController implements Initializable {
        idEntreprise.setText(text); 
    }
    
-      public void insertFormation(){
+      public void insertFormation() throws SQLException, Exception{
         
             
            if (tfDescriptionFormation.getText().equals("") || tfVolumeHoraireFormation.getText().equals("")||tfAdresseFormation.getText().equals("")||
@@ -104,10 +124,12 @@ public class AjouterFormationsController implements Initializable {
         //get entreprise ID 
        
        Formation F= new Formation(tfDescriptionFormation.getText(),VolumeHoraireInteger,valueOf(tfDateFormation.getValue()),
-               tfAdresseFormation.getText(),PrixInteger,Promo);
+               tfAdresseFormation.getText(),PrixInteger,Promo,IMGPATH.getText());
         
         
         FormationService.ajouter(F,idEntreprise.getText());
+               System.out.println("Email entreprise :"+Email);
+       SendMail.sendMail(Email);
         notif("Ajouter avec succes", "La formation "+F.getDescription()+" est ajoutée", F);
                     btnInsertFormation.getScene().getWindow().hide();
         }
@@ -115,7 +137,7 @@ public class AjouterFormationsController implements Initializable {
                 }
 
     @FXML
-      private void handleButtonAction(ActionEvent event) {
+      private void handleButtonAction(ActionEvent event) throws Exception {
         if (event.getSource()==btnInsertFormation){
     insertFormation();
 
@@ -140,6 +162,25 @@ public class AjouterFormationsController implements Initializable {
         notificationBuilder.showConfirm();
                 
         }
+
+    @FXML
+    private void loadIMG(ActionEvent event) {
+        
+        
+        
+         FileChooser fc=new FileChooser();
+        File selectedFile = fc.showOpenDialog(null);
+        if (selectedFile!=null){
+            
+            IMGPATH.setText("images/"+selectedFile.getName());
+            System.out.println(selectedFile.getPath());
+             Image image = new Image(selectedFile.toURI().toString(),50,50,true,true);  
+            
+             
+        }else{
+            System.out.println("erruer files");
+        }
+    }
    
    
    

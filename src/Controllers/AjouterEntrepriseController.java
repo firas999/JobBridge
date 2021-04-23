@@ -54,6 +54,8 @@ public class AjouterEntrepriseController implements Initializable {
     @FXML
     private ImageView LogoEntreprise;
     private Image image;
+    @FXML
+    private TextField IMGPATH;
 
     
     
@@ -68,14 +70,15 @@ public class AjouterEntrepriseController implements Initializable {
 
     @FXML
     public void loadIMG(ActionEvent event){
-        FileChooser fc=new FileChooser();
+          FileChooser fc=new FileChooser();
         File selectedFile = fc.showOpenDialog(null);
         if (selectedFile!=null){
-            System.out.println(selectedFile.getAbsolutePath());
-            image = new Image(selectedFile.toURI().toString(),50,50,true,true);
-            LogoEntreprise.setImage(image);
-            LogoEntreprise.setPreserveRatio(true);
-            System.out.println(selectedFile.getName()); 
+            
+            IMGPATH.setText("images/"+selectedFile.getName());
+            System.out.println(selectedFile.getPath());
+             Image image = new Image(selectedFile.toURI().toString(),50,50,true,true);  
+            
+             
         }else{
             System.out.println("erruer files");
         }
@@ -121,11 +124,12 @@ public class AjouterEntrepriseController implements Initializable {
         int TelephoneInteger=Integer.parseInt(tfTelephoneEntreprise.getText());
         int TailleInteger=Integer.parseInt(tftailleEntreprise.getText());
         
-       Entreprise E= new Entreprise(tfSecteurEntreprise.getText(),tfSiteEntreprise.getText(),TailleInteger,TelephoneInteger,tfEmailEntreprise.getText(),tfNomEntreprise.getText(),tfMatriculeFiscal.getText());
+       Entreprise E= new Entreprise(tfSecteurEntreprise.getText(),tfSiteEntreprise.getText(),TailleInteger,TelephoneInteger,tfEmailEntreprise.getText(),tfNomEntreprise.getText(),tfMatriculeFiscal.getText(),IMGPATH.getText());
         
         ServiceEntreprise EntrepriseService = new ServiceEntreprise();
         
         EntrepriseService.ajouter(E);
+        
         
                          notif("Ajouter avec succes", "L'entreprise "+E.getNom()+" est ajoutée", E);
                          Thread.sleep(5000);

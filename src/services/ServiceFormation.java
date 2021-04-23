@@ -6,6 +6,8 @@
 package services;
 
 import Controllers.EntrepriseController;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +17,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import models.Entreprise;
 import models.Formation;
 import utils.DataSource;
@@ -46,16 +52,17 @@ while (rs.next()){
     
 }
          
-            String requete = "INSERT INTO formation(description,entreprise_id,volume_horaire, date_formation,adresse, prix, promo)"
-                    + " VALUES (?,?,?,?,?,?,?)";
+            String requete = "INSERT INTO formation(description,entreprise_id,volume_horaire, date_formation,adresse,image, prix, promo)"
+                    + " VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement pst = conn.prepareStatement(requete);
             pst.setString(1,F.getDescription());
             pst.setInt(2,idE);
             pst.setInt(3,F.getVolumeHoraire());
             pst.setDate(4,F.getDate_formation());
             pst.setString(5,F.getAdresse());
-            pst.setInt(6,F.getPrix());
-            pst.setInt(7,F.getPromo());
+            pst.setString(6, F.getImage());
+            pst.setInt(7,F.getPrix());
+            pst.setInt(8,F.getPromo());
             pst.executeUpdate();
              
             
@@ -80,12 +87,12 @@ while (rs.next()){
         }  
     }
 
-   public void modifier(Formation F) {
+    public void modifier(Formation F) {
     try{
         String requete = "UPDATE formation  SET  description=?,volume_horaire=?, date_formation=?,adresse=?, prix=?, promo=?"
                     + " WHERE id=?";
             PreparedStatement pst = conn.prepareStatement(requete);
-               pst.setString(1,F.getDescription());
+            pst.setString(1,F.getDescription());
             pst.setInt(2,F.getVolumeHoraire());
             pst.setDate(3, new java.sql.Date(F.getDate_formation().getTime()));
             pst.setString(4,F.getAdresse());
@@ -129,11 +136,35 @@ return nom;
     
            ResultSet rs = conn.createStatement().executeQuery("select * from formation");
             while (rs.next()){
-                
                     
+             
                 data.add(new Formation(rs.getInt("id"),getNomEntrepriseFromID(rs.getInt("entreprise_id")),rs.getString("description"),rs.getInt("volume_horaire"),
-                        rs.getDate("date_formation"),rs.getString("adresse"),rs.getInt("prix"),rs.getInt("promo")));
-                
+                        rs.getDate("date_formation"),rs.getString("adresse"),rs.getString("image"),rs.getInt("prix"),rs.getInt("promo")));
+                System.out.println(" entreprise :"+rs.getString("description")+rs.getInt("volume_horaire")+
+                        rs.getDate("date_formation")+rs.getString("adresse")+rs.getInt("prix")+rs.getInt("promo")+rs.getString("image")
+  +"********************************");
+                System.out.println("*****************************************");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EntrepriseController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
+    
+    
+       public List afficherEnpromo() {
+      try {
+    
+           ResultSet rs = conn.createStatement().executeQuery("select * from formation where promo=1");
+            while (rs.next()){
+                    
+             
+                data.add(new Formation(rs.getInt("id"),getNomEntrepriseFromID(rs.getInt("entreprise_id")),rs.getString("description"),rs.getInt("volume_horaire"),
+                        rs.getDate("date_formation"),rs.getString("adresse"),rs.getString("image"),rs.getInt("prix"),rs.getInt("promo")));
+                System.out.println(" entreprise :"+rs.getString("description")+rs.getInt("volume_horaire")+
+                        rs.getDate("date_formation")+rs.getString("adresse")+rs.getInt("prix")+rs.getInt("promo")+rs.getString("image")
+  +"********************************");
+                System.out.println("*****************************************");
             }
         } catch (SQLException ex) {
             Logger.getLogger(EntrepriseController.class.getName()).log(Level.SEVERE, null, ex);
@@ -154,6 +185,8 @@ return nom;
     public void getIDEntreprise(String nomEntreprise) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
 
     
     

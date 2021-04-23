@@ -6,6 +6,7 @@
 package models;
 
 import java.sql.Date;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -22,6 +23,20 @@ public class Formation {
     private Integer prix;
     private Integer Promo;
     private String NomEntreprise;
+    private String image;
+    private ImageView img;
+
+    public Formation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public Formation(Integer id, Integer idEntreprise, String Description, Integer VolumeHoraire, Date date_formation, String adresse, Integer prix, Integer Promo) {
         this.id = id;
@@ -32,8 +47,9 @@ public class Formation {
         this.adresse = adresse;
         this.prix = prix;   
         this.Promo = Promo;
+       
     }
-    public Formation(Integer id, String NomEntreprise, String Description, Integer VolumeHoraire, Date date_formation, String adresse, Integer prix, Integer Promo) {
+    public Formation(Integer id, String NomEntreprise, String Description, Integer VolumeHoraire, Date date_formation, String adresse,String image, Integer prix, Integer Promo) {
         this.id = id;
         this.NomEntreprise = NomEntreprise;
         this.Description = Description;
@@ -42,6 +58,18 @@ public class Formation {
         this.adresse = adresse;
         this.prix = prix;   
         this.Promo = Promo;
+         this.image=image;
+    }
+    public Formation(Integer id, String NomEntreprise, String Description, Integer VolumeHoraire, Date date_formation, String adresse, Integer prix, Integer Promo,ImageView image) {
+        this.id = id;
+        this.NomEntreprise = NomEntreprise;
+        this.Description = Description;
+        this.VolumeHoraire = VolumeHoraire;
+        this.date_formation = date_formation;
+        this.adresse = adresse;
+        this.prix = prix;   
+        this.Promo = Promo;
+         this.img=image;
     }
 
     public Formation(Integer id, String Description, Integer VolumeHoraire, Date date_formation, String adresse, Integer prix, Integer Promo) {
@@ -54,13 +82,24 @@ public class Formation {
         this.Promo = Promo;
     }
 
-    public Formation(String Description, Integer VolumeHoraire, Date date_formation, String adresse, Integer prix, Integer Promo) {
+    public Formation(String Description, Integer VolumeHoraire, Date date_formation, String adresse, Integer prix, Integer Promo,String image) {
         this.Description = Description;
         this.VolumeHoraire = VolumeHoraire;
         this.date_formation = date_formation;
         this.adresse = adresse;
         this.prix = prix;
         this.Promo = Promo;
+        this.image=image;
+    }
+    
+    public Formation(String Description, Integer VolumeHoraire, Date date_formation, String adresse, Integer prix, Integer Promo,ImageView image) {
+        this.Description = Description;
+        this.VolumeHoraire = VolumeHoraire;
+        this.date_formation = date_formation;
+        this.adresse = adresse;
+        this.prix = prix;
+        this.Promo = Promo;
+        this.img=image;
     }
     
     /**
@@ -158,6 +197,14 @@ public class Formation {
 
     public void setPromo(Integer Promo) {
         this.Promo = Promo;
+    }
+    
+     public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
     }
     
     

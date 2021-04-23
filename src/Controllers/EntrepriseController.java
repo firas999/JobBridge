@@ -153,7 +153,7 @@ if (event.getSource()==btnInsert){
     }
     
     
-    
+        
     //delete 
     public void DELETEentreprise(){
           int id=Integer.parseInt(tfIdEntreprise.getText());
@@ -424,6 +424,7 @@ if (event.getSource()==btnInsert){
                                AjouterFormationsController AFcontroller =loader.getController();
                                
                                AFcontroller.setIDentreprise(selectedEntreprise.getNom());
+                               AFcontroller.setEmail(selectedEntreprise.getEmail());
                                Stage  stage=new Stage();
                                stage.setScene(new Scene(root));
                                stage.show();

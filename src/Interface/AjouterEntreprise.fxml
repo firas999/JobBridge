@@ -18,6 +18,7 @@
             <Label text="Email" />
             <Label text="Telephone" />
             <Label text="Taille" />
+            <Button fx:id="loadImage" mnemonicParsing="false" onAction="#loadIMG" text="Button" />
          </children>
       </VBox>
       <VBox layoutX="285.0" layoutY="68.0" prefHeight="200.0" prefWidth="139.0" spacing="7.0">
@@ -29,11 +30,11 @@
             <TextField fx:id="tfEmailEntreprise" layoutX="10.0" layoutY="110.0" />
             <TextField fx:id="tfTelephoneEntreprise" layoutX="10.0" layoutY="135.0" />
             <TextField fx:id="tftailleEntreprise" layoutX="10.0" layoutY="160.0" />
+            <TextField fx:id="IMGPATH" layoutX="10.0" layoutY="202.0" />
          </children>
       </VBox>
       <Button fx:id="btnInsert" layoutX="248.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonAction" onMouseClicked="#addEntreprise" text="Inserer" />
       <Label layoutX="251.0" layoutY="31.0" text="Ajouter entreprise" />
-      <Button fx:id="loadImage" layoutX="299.0" layoutY="305.0" mnemonicParsing="false" onAction="#loadIMG" text="Button" />
       <ImageView fx:id="LogoEntreprise" fitHeight="150.0" fitWidth="200.0" layoutX="386.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

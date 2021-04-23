@@ -28,6 +28,15 @@ public class Entreprise {
 
   
     private String Nom;
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     
     
@@ -104,7 +113,7 @@ public class Entreprise {
     
     private String MatriculeFiscal;
 
-    public Entreprise(Integer id, String Secteur, String SiteWeb, Integer Taille, Integer Telephone, String email, String Nom, String MatriculeFiscal) {
+    public Entreprise(Integer id, String Secteur, String SiteWeb, Integer Taille, Integer Telephone, String email, String Nom, String MatriculeFiscal,String image) {
         this.id = id;
         this.Secteur = Secteur;
         this.SiteWeb = SiteWeb;
@@ -113,9 +122,10 @@ public class Entreprise {
         this.email = email;
         this.Nom = Nom;
         this.MatriculeFiscal = MatriculeFiscal;
+        this.image=image;
     }
 
-    public Entreprise(String Secteur, String SiteWeb, Integer Taille, Integer Telephone, String email, String Nom, String MatriculeFiscal) {
+    public Entreprise(String Secteur, String SiteWeb, Integer Taille, Integer Telephone, String email, String Nom, String MatriculeFiscal,String image) {
         this.Secteur = Secteur;
         this.SiteWeb = SiteWeb;
         this.Taille = Taille;
@@ -123,6 +133,7 @@ public class Entreprise {
         this.email = email;
         this.Nom = Nom;
         this.MatriculeFiscal = MatriculeFiscal;
+        this.image=image;
     }
       public Entreprise(String Secteur, String SiteWeb, Integer Taille, Integer Telephone, String email, String Nom, String MatriculeFiscal,Integer id) {
         this.Secteur = Secteur;

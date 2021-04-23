@@ -25,14 +25,24 @@ public class TestController implements Initializable {
 
     @FXML
     private ImageView imagelab;
-    @FXML
-    private Label Nomlab;
-    @FXML
-    private Label Prixlab;
-    @FXML
-    private Label Quantitelab;
+    private Label Nom;
+    private Label secteur;
     @FXML
     private Button Commander;
+    @FXML
+    private Label NomEntreprise;
+    @FXML
+    private Label secteurEntreprise;
+    @FXML
+    private Label MFEntreprise;
+    @FXML
+    private Label SiteEntreprise;
+    @FXML
+    private Label EmailEntreprise;
+    @FXML
+    private Label TeleEntreprise1;
+    @FXML
+    private Label TailleEntreprise;
 
     /**
      * Initializes the controller class.
@@ -44,12 +54,21 @@ public class TestController implements Initializable {
 
     public void setData(Entreprise E) {
      //   Prod = P;
-        Nomlab.setText(E.getNom());
-        Prixlab.setText(String.valueOf(E.getNom()));
-        Quantitelab.setText(String.valueOf(E.getSecteur()));
-       /*Image image = new Image(getClass().getResourceAsStream(E.getImage()));
+        NomEntreprise.setText(E.getNom());
+        secteurEntreprise.setText(E.getSecteur());
+        MFEntreprise.setText(E.getMatriculeFiscal());
+        SiteEntreprise.setText(E.getSiteWeb());
+        EmailEntreprise.setText(E.getEmail());
+        TeleEntreprise1.setText(String.valueOf(E.getTelephone()));
+         TailleEntreprise.setText(String.valueOf(E.getTaille()));
+        
+       System.out.println(E.getImage());
+         String path = "/"+E.getImage();
+         path = path.replace("\\","/");
+         System.out.println("correct path : "+path);
+         
+       Image image = new Image(getClass().getResourceAsStream(path));
        imagelab.setImage(image);
-       */
 }
 
     @FXML

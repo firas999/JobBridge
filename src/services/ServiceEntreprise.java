@@ -31,8 +31,8 @@ public class ServiceEntreprise implements Iservices.IserviceEntreprise{
     }
     public void ajouter(Entreprise E) {
          try {
-            String requete = "INSERT INTO entreprise(secteur, site_web, taille, telephone, email, nom, matricule_fiscal)"
-                    + " VALUES (?,?,?,?,?,?,?)";
+            String requete = "INSERT INTO entreprise(secteur, site_web, taille, telephone, email, nom, matricule_fiscal,image)"
+                    + " VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement pst = conn.prepareStatement(requete);
             pst.setString(1,E.getSecteur());
             pst.setString(2,E.getSiteWeb());
@@ -41,6 +41,7 @@ public class ServiceEntreprise implements Iservices.IserviceEntreprise{
             pst.setString(5,E.getEmail());
             pst.setString(6,E.getNom());
             pst.setString(7,E.getMatriculeFiscal());
+            pst.setString(8,E.getImage());
             pst.executeUpdate();
              
             
@@ -110,7 +111,7 @@ public class ServiceEntreprise implements Iservices.IserviceEntreprise{
             while (rs.next()){
                 data.add(new Entreprise(rs.getInt("id"),rs.getString("secteur"),rs.getString("site_Web"),
                         rs.getInt("taille"),rs.getInt("telephone"),rs.getString("email"),rs.getString("nom"),
-                        rs.getString("matricule_fiscal")));
+                        rs.getString("matricule_fiscal"),rs.getString("image")));
                 System.out.println("************"+rs.getString("secteur") + rs.getString("site_Web")+
                         rs.getInt("taille")+rs.getInt("telephone")+rs.getString("email")+rs.getString("nom")+
                         rs.getString("matricule_fiscal"));
@@ -121,6 +122,7 @@ public class ServiceEntreprise implements Iservices.IserviceEntreprise{
         return data;
         
     }
+    
 
     
     public void supprimerFormationCreerParEntreprise(int id) {

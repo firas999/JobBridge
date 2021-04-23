@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,16 +18,19 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import models.Entreprise;
+import models.Formation;
 import services.ServiceEntreprise;
+import services.ServiceFormation;
 
 /**
  * FXML Controller class
  *
  * @author dell
  */
-public class AfficherEntrepriseController implements Initializable {
-private final List<Entreprise> entrepriseList = new ArrayList<>();
-    ServiceEntreprise ES = new ServiceEntreprise();
+public class AfficherFormatinFrontController implements Initializable {
+
+   private final List<Formation> FormationList = new ArrayList<>();
+      services.ServiceFormation serviceFormation = new ServiceFormation();
     @FXML
     private AnchorPane produits;
     @FXML
@@ -41,19 +43,20 @@ private final List<Entreprise> entrepriseList = new ArrayList<>();
      */
    @Override
     public void initialize(URL url, ResourceBundle rb) {
-               entrepriseList.addAll(ES.afficher());
+        
+        FormationList.addAll(serviceFormation.afficher());
         int column = 0;
         int row = 1;
         try {
-            for (int i = 0; i < entrepriseList.size(); i++){
+            for (int i = 0; i < FormationList.size(); i++) {
                 FXMLLoader fxmlloader = new FXMLLoader();
-                fxmlloader.setLocation(getClass().getResource("/Interface/test.fxml"));
+                fxmlloader.setLocation(getClass().getResource("/Interface/testFormation.fxml"));
                 AnchorPane anchorPane = fxmlloader.load();
 
-                TestController AA = fxmlloader.getController();
-               //  AA.setData(produit.get(0));
-                AA.setData(entrepriseList.get(i));
-                if (column == 3) {
+                TestFormationController AA = fxmlloader.getController();
+              
+                AA.setData(FormationList.get(i));
+                if (column == 2) {
                     column = 0;
                     row++;
                 }
@@ -71,7 +74,7 @@ private final List<Entreprise> entrepriseList = new ArrayList<>();
 
     @FXML
     private void OnclickPromo(ActionEvent event) {
-        
     }
+    
     
 }
