@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="afficheremployer" prefHeight="491.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AffichercCandidatController">
+   <children>
+      <ImageView fitHeight="504.0" fitWidth="837.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/175567669_551836615781426_2642776376621841900_n.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="affichercandidat" layoutX="139.0" layoutY="150.0" prefHeight="282.0" prefWidth="613.0">
+        <columns>
+          <TableColumn fx:id="nomcandidat" prefWidth="41.60003662109375" text="nom" />
+          <TableColumn fx:id="prenomcandidat" prefWidth="55.20001220703125" text="prenom" />
+            <TableColumn fx:id="motdepassecandidat" text="mot de passe" />
+            <TableColumn fx:id="typecandidat" prefWidth="38.39996337890625" text="type" />
+            <TableColumn fx:id="discrcandidat" prefWidth="52.79998779296875" text="disc" />
+            <TableColumn fx:id="secteurcandidat" prefWidth="47.20001220703125" text="secteur" />
+            <TableColumn fx:id="sitewebcandidat" prefWidth="60.7999267578125" text="siteweb" />
+            <TableColumn fx:id="taillecandidat" prefWidth="55.99993896484375" text="taille" />
+            <TableColumn fx:id="numcandidat" prefWidth="45.60003662109375" text="num" />
+            <TableColumn fx:id="imagecandidat" prefWidth="54.4000244140625" text="image" />
+            <TableColumn fx:id="follow" prefWidth="47.199951171875" text="followers" />
+            <TableColumn fx:id="block" prefWidth="29.600000000000023" text="blocked" />
+        </columns>
+      </TableView>
+      <TextField fx:id="search" layoutX="521.0" layoutY="117.0" onAction="#search" onInputMethodTextChanged="#searchTextChanged" onKeyReleased="#searchKeyRelaesed" prefHeight="26.0" prefWidth="231.0" promptText="search" />
+      <ImageView fx:id="img_ajout" fitHeight="26.0" fitWidth="27.0" layoutX="149.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/175440060_366963864608706_8736419864137703950_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="img_edit" fitHeight="26.0" fitWidth="26.0" layoutX="190.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/175866337_465860967802801_2948322923014818611_n.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btn_ajout" layoutX="155.0" layoutY="117.0" mnemonicParsing="false" onAction="#ajoutercandidat" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="btn_modifier" layoutX="197.0" layoutY="117.0" mnemonicParsing="false" onMouseClicked="#modifierClicked" prefHeight="26.0" prefWidth="18.0" style="-fx-background-color: transparent;" />
+      <ImageView fx:id="img_delete" fitHeight="36.0" fitWidth="26.0" layoutX="226.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/175961547_3926708467397919_1648354718717983116_n.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btn_supprim" layoutX="233.0" layoutY="117.0" mnemonicParsing="false" onAction="#supprimercandidat" prefHeight="26.0" prefWidth="18.0" style="-fx-background-color: transparent;" />
+      <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="426.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/175669846_799143607676066_6790751393687263924_n.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="426.0" layoutY="117.0" mnemonicParsing="false" onAction="#pdf_coach" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: transparent;" />
+      <Text fx:id="labelll" fill="WHITE" layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="117.5999984741211" />
+      <Circle fx:id="circle" fill="DODGERBLUE" layoutX="73.0" layoutY="58.0" onMouseClicked="#profile" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fitHeight="26.0" fitWidth="37.0" layoutX="252.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/like.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="37.0" layoutX="333.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/dislike.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="img_block" fitHeight="26.0" fitWidth="37.0" layoutX="431.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/block.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="img_unblock" fitHeight="26.0" fitWidth="37.0" layoutX="532.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/circle%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="37.0" layoutX="162.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/back-arrow.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="back" layoutX="158.0" layoutY="446.0" mnemonicParsing="false" onAction="#backtoAcceuil" prefHeight="26.0" prefWidth="33.0" style="-fx-background-color: transparent;" />
+      <Button layoutX="252.0" layoutY="446.0" mnemonicParsing="false" onAction="#follow" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: transparent;" />
+      <Button layoutX="332.0" layoutY="446.0" mnemonicParsing="false" onAction="#unfollow" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="btn_block" layoutX="426.0" layoutY="446.0" mnemonicParsing="false" onAction="#block" prefHeight="26.0" prefWidth="34.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="btn_unblock" layoutX="530.0" layoutY="446.0" mnemonicParsing="false" onAction="#unblock" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="email" layoutX="617.0" layoutY="447.0" mnemonicParsing="false" onAction="#emailsubmit" text="email" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AffichercandidatfrontController">
+   <children>
+      <TableView fx:id="affichercandidat" layoutX="41.0" layoutY="42.0" prefHeight="258.0" prefWidth="469.0">
+        <columns>
+          <TableColumn fx:id="nomcandidat" prefWidth="47.20001220703125" text="nom" />
+          <TableColumn fx:id="prenomcandidat" prefWidth="56.0" text="prenom" />
+            <TableColumn fx:id="typecandidat" prefWidth="41.5999755859375" text="type" />
+            <TableColumn fx:id="secteurcandidat" prefWidth="48.79998779296875" text="secteur" />
+            <TableColumn fx:id="sitewebcandidat" prefWidth="53.59991455078125" text="siteweb" />
+            <TableColumn fx:id="taillecandidat" prefWidth="62.39996337890625" text="tailleentreprise" />
+            <TableColumn fx:id="numcandidat" prefWidth="45.60003662109375" text="numerotelephone" />
+            <TableColumn fx:id="imagecandidat" prefWidth="60.00002441406252" text="image" />
+        </columns>
+      </TableView>
+      <ButtonBar layoutX="55.0" layoutY="318.0" prefHeight="40.0" prefWidth="437.0">
+        <buttons>
+            <Button fx:id="btn_ajout" mnemonicParsing="false" onAction="#ajoutercandidat" text="ajouter" />
+            <Button fx:id="btn_modif" mnemonicParsing="false" onMouseClicked="#modifierClicked" text="modifier" />
+          <Button fx:id="btn_supprim" mnemonicParsing="false" onAction="#supprimercandidat" text="supprimer" />
+            <Button mnemonicParsing="false" onAction="#follow" text="follow" />
+            <Button mnemonicParsing="false" onAction="#unfollow" text="unfollow" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>
