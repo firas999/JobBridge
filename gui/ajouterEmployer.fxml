@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterEmployerController">
+   <children>
+      <VBox layoutX="24.0" layoutY="10.0" prefHeight="400.0" prefWidth="268.0">
+         <children>
+            <Label text="Nom" />
+            <TextField fx:id="textfieldnom" />
+            <Label text="Prenom" />
+            <TextField fx:id="textfieldprenom" />
+            <Label text="Mot de passe " />
+            <TextField fx:id="textfieldmotdepasse" />
+            <Label text="Type" />
+            <TextField fx:id="textfieldtype" />
+            <Label text="diplome" />
+            <TextField fx:id="textfielddiplome" />
+            <ButtonBar prefHeight="40.0" prefWidth="200.0">
+              <buttons>
+                <Button fx:id="btn_back" mnemonicParsing="false" onAction="#backToAffichage" text="&lt;back" />
+                  <Button fx:id="btn_ajout" mnemonicParsing="false" onAction="#ajout" text="submit" />
+              </buttons>
+            </ButtonBar>
+         </children>
+      </VBox>
+      <VBox layoutX="310.0" layoutY="10.0" prefHeight="400.0" prefWidth="268.0">
+         <children>
+            <Label text="entreprise" />
+            <TextField fx:id="textfieldentreprise" />
+            <Label text="type de contrat" />
+            <TextField fx:id="textfieldtypedecontrat" />
+            <Label text="poste occupe" />
+            <TextField fx:id="textfieldposteoccupe" />
+            <Label text="date" />
+            <DatePicker fx:id="textfielddate" />
+            <Label text="competence" />
+            <TextField fx:id="textfieldcompetence" layoutX="10.0" layoutY="157.0" />
+            <ImageView fx:id="imageToPost" fitHeight="80.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="addImage" mnemonicParsing="false" onAction="#addImage" text="upload" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

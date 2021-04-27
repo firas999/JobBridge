@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="504.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherEmployerController">
+   <children>
+      <ImageView fitHeight="562.0" fitWidth="831.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/175567669_551836615781426_2642776376621841900_n.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="afficheremployer" layoutX="162.0" layoutY="130.0" prefHeight="298.0" prefWidth="466.0">
+         <columns>
+            <TableColumn fx:id="nomcandidat" prefWidth="78.4000244140625" text="nom" />
+            <TableColumn fx:id="prenomcandidat" prefWidth="91.19998168945312" text="prenom" />
+            <TableColumn fx:id="motdepassecandidat" prefWidth="72.80001831054688" text="mot de passe" />
+            <TableColumn fx:id="typecandidat" prefWidth="40.800018310546875" text="type" />
+            <TableColumn fx:id="discrcandidat" prefWidth="64.0" text="disc" />
+            <TableColumn fx:id="diplomeemployer" prefWidth="49.5999755859375" text="diplome" />
+            <TableColumn fx:id="entrepriseemployer" prefWidth="77.60003662109375" text="entreprise" />
+            <TableColumn fx:id="contratemployer" prefWidth="70.39996337890625" text="contrat" />
+            <TableColumn fx:id="posteoccupeemployer" prefWidth="85.5999755859375" text="posteoccupe" />
+            <TableColumn fx:id="dateemployer" prefWidth="91.19989013671875" text="date" />
+            <TableColumn fx:id="competenceemployer" prefWidth="83.20001220703125" text="competence" />
+            <TableColumn fx:id="imagecandidat" prefWidth="103.20001220703125" text="image" />
+         </columns>
+      </TableView>
+      <Button fx:id="btn_ajout" layoutX="199.0" layoutY="456.0" mnemonicParsing="false" onAction="#ajouteremployer" text="ajouter " />
+      <Button fx:id="btn_modifier" layoutX="285.0" layoutY="456.0" mnemonicParsing="false" onMouseClicked="#modifierClicked" text="modifier" />
+      <Button fx:id="btn_supprim" layoutX="360.0" layoutY="456.0" mnemonicParsing="false" onAction="#supprimeremployer" text="supprimer" />
+      <Button fx:id="back" layoutX="683.0" layoutY="138.0" mnemonicParsing="false" onAction="#backacceuil" text="&lt;back" />
+      <Circle fx:id="circle" fill="DODGERBLUE" layoutX="69.0" layoutY="58.0" onMouseClicked="#profile" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text fx:id="laabell" layoutX="130.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+   </children>
+</AnchorPane>
