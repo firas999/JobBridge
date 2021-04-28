@@ -3,36 +3,46 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Controllers.ModifierEntrepriseController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierEntrepriseController">
    <children>
-      <VBox layoutX="157.0" layoutY="79.0" prefHeight="249.0" prefWidth="88.0" spacing="15.0">
-         <children>
-            <Label text="Nom entreprise" />
-            <Label text="Secteur" />
-            <Label text="Matricule fiscal" />
-            <Label text="Site " />
-            <Label text="Email" />
-            <Label text="Telephone" />
-            <Label text="Taille" />
-         </children>
-      </VBox>
-      <VBox layoutX="265.0" layoutY="79.0" prefHeight="200.0" prefWidth="139.0" spacing="7.0">
-         <children>
-            <TextField fx:id="tfNomEntreprise" />
-            <TextField fx:id="tfSecteurEntreprise" layoutX="10.0" layoutY="35.0" />
-            <TextField fx:id="tfMatriculeFiscal" layoutX="10.0" layoutY="60.0" />
-            <TextField fx:id="tfSiteEntreprise" layoutX="10.0" layoutY="85.0" />
-            <TextField fx:id="tfEmailEntreprise" layoutX="10.0" layoutY="110.0" />
-            <TextField fx:id="tfTelephoneEntreprise" layoutX="10.0" layoutY="135.0" />
-            <TextField fx:id="tftailleEntreprise" layoutX="10.0" layoutY="160.0" />
-            <TextField fx:id="tfIdEntreprise" />
-         </children>
-      </VBox>
-      <Button fx:id="btnUpdate" layoutX="270.0" layoutY="357.0" mnemonicParsing="false" onAction="#handleButtonAction" onMouseClicked="#UpdateEntreprise" text="Modifier" />
-      <Label layoutX="201.0" layoutY="38.0" text="Modifer entreprise" />
+      <Button fx:id="btnUpdate" layoutX="412.0" layoutY="281.0" mnemonicParsing="false" onAction="#handleButtonAction" onMouseClicked="#UpdateEntreprise">
+         <graphic>
+            <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/checkMark.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Label layoutX="64.0" layoutY="17.0" text="Modifier Entreprise" textFill="#72bdf7">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Line endX="-101.62130737304688" endY="-81.12132263183594" layoutX="125.0" layoutY="125.0" startX="-102.5" startY="232.5" stroke="#72bdf7" strokeWidth="3.0" />
+      <Line endX="453.0" layoutX="124.0" layoutY="356.0" startX="-100.0" stroke="#72bdf7" strokeWidth="3.0" />
+      <Line endX="272.5" endY="-89.5" layoutX="305.0" layoutY="133.0" startX="273.5" startY="224.5" stroke="#72bdf7" strokeWidth="3.0" />
+      <Line endX="453.0" layoutX="124.0" layoutY="46.0" startX="226.0" stroke="#72bdf7" strokeWidth="3.0" />
+      <Line endX="226.0" layoutX="-166.0" layoutY="43.0" startX="190.5" startY="0.5" stroke="#72bdf7" strokeWidth="3.0" />
+      <Label layoutX="42.0" layoutY="118.0" text="Nom entreprise" />
+      <Label layoutX="42.0" layoutY="150.0" text="Secteur" />
+      <Label layoutX="42.0" layoutY="182.0" text="Matricule fiscal" />
+      <Label layoutX="42.0" layoutY="214.0" text="Site " />
+      <Label layoutX="329.0" layoutY="138.0" text="Email" />
+      <Label layoutX="329.0" layoutY="170.0" text="Telephone" />
+      <Label layoutX="329.0" layoutY="202.0" text="Taille" />
+      <TextField fx:id="tfNomEntreprise" layoutX="145.0" layoutY="119.0" />
+      <TextField fx:id="tfSecteurEntreprise" layoutX="145.0" layoutY="151.0" />
+      <TextField fx:id="tfMatriculeFiscal" layoutX="145.0" layoutY="183.0" />
+      <TextField fx:id="tfSiteEntreprise" layoutX="145.0" layoutY="215.0" />
+      <TextField fx:id="tfEmailEntreprise" layoutX="396.0" layoutY="137.0" />
+      <TextField fx:id="tfTelephoneEntreprise" layoutX="396.0" layoutY="169.0" />
+      <TextField fx:id="tftailleEntreprise" layoutX="396.0" layoutY="201.0" />
+      <TextField fx:id="tfIdEntreprise" layoutX="171.0" layoutY="312.0" />
    </children>
 </AnchorPane>

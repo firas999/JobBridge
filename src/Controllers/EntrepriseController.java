@@ -39,6 +39,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -112,6 +113,12 @@ public class EntrepriseController implements Initializable {
     private TextField liveSearchEntreprise;
     @FXML
     private TableColumn tvActions4;
+    @FXML
+    private Button PageFormationBack;
+    @FXML
+    private Button Entepriseback;
+    @FXML
+    private Button actualiser;
     
     
 
@@ -248,10 +255,14 @@ if (event.getSource()==btnInsert){
         
                                Parent root=loader.load();
                                DetailEntrepriseController Detailcontroller =loader.getController();
-                               
+                                String path = "/"+selectedEntreprise.getImage();
+         path = path.replace("\\","/");
+         
+         
+       Image image = new Image(getClass().getResourceAsStream(path));
                                Detailcontroller.setTEXTFIELDS(selectedEntreprise.getNom(),selectedEntreprise.getSecteur()
                                        , selectedEntreprise.getMatriculeFiscal(),selectedEntreprise.getSiteWeb(),
-                                       selectedEntreprise.getEmail(),selectedEntreprise.getTelephone().toString(),selectedEntreprise.getTaille().toString());
+                                       selectedEntreprise.getEmail(),selectedEntreprise.getTelephone().toString(),selectedEntreprise.getTaille().toString(),path);
                                Stage  stage=new Stage();
                                stage.setScene(new Scene(root));
                                stage.show();
@@ -430,6 +441,7 @@ if (event.getSource()==btnInsert){
                                stage.show();
                                
                                
+                               
 //                             
                            } catch (IOException ex) {
                                Logger.getLogger(EntrepriseController.class.getName()).log(Level.SEVERE, null, ex);
@@ -558,15 +570,27 @@ showEntreprise();
     }
 
     @FXML
-    private void pdf(ActionEvent event) {
+    private void PageFormationBack(ActionEvent event) throws IOException
+
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("/Interface/Formation.fxml"));
+        PageFormationBack.getScene().setRoot(root);
     }
 
     @FXML
-    private void Excel(ActionEvent event) {
+    private void entrepriseback(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/javafxapplication5/Entreprise.fxml"));
+        Entepriseback.getScene().setRoot(root);
     }
+
+    @FXML
+    private void actualiser(ActionEvent event) throws IOException {
+     Parent root = FXMLLoader.load(getClass().getResource("/javafxapplication5/Entreprise.fxml"));
+        actualiser.getScene().setRoot(root);   
+    }
+
          
     
     
-            
-            
+                 
 }

@@ -88,6 +88,7 @@ public class AjouterFormationsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         idEntreprise.setVisible(false);
+        tfIdFormation.setVisible(false);
         conn = DataSource.getInstance().getCnx();
     }    
    public void setIDentreprise(String text){

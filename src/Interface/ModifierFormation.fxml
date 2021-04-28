@@ -5,32 +5,43 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Controllers.ModifierFormationController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifierFormationController">
    <children>
-      <VBox layoutX="143.0" layoutY="86.0" prefHeight="249.0" prefWidth="105.0" spacing="15.0">
-         <children>
-            <Label text="Description" />
-            <Label text="Volume Horaire" />
-            <Label text="Date Formation" />
-            <Label text="adresse" />
-            <Label text="Prix" />
-         </children>
-      </VBox>
-      <VBox layoutX="268.0" layoutY="86.0" prefHeight="217.0" prefWidth="149.0" spacing="7.0">
-         <children>
-            <TextField fx:id="tfDescriptionFormation" />
-            <TextField fx:id="tfVolumeHoraireFormation" layoutX="10.0" layoutY="35.0" />
-            <DatePicker fx:id="tfDateFormation" />
-            <TextField fx:id="tfAdresseFormation" layoutX="10.0" layoutY="85.0" />
-            <TextField fx:id="tfPrixFormation" layoutX="10.0" layoutY="110.0" />
-         </children>
-      </VBox>
-      <CheckBox fx:id="CHBoxPromoFormation" layoutX="240.0" layoutY="323.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="En Promotion" />
-      <Button fx:id="btnUpdateFormation" layoutX="467.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Modifier" />
+      <Button fx:id="btnUpdateFormation" layoutX="373.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleButtonAction">
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/checkMark.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <TextField fx:id="tfIdFormation" layoutX="69.0" layoutY="14.0" />
+      <Label layoutX="62.0" layoutY="21.0" text="Modifier Formation" textFill="#72bdf7">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Line endX="-101.62130737304688" endY="-81.12132263183594" layoutX="122.0" layoutY="131.0" startX="-102.5" startY="232.5" stroke="#72bdf7" strokeWidth="3.0" />
+      <Line endX="453.0" layoutX="121.0" layoutY="362.0" startX="-100.0" stroke="#72bdf7" strokeWidth="3.0" />
+      <Line endX="272.5" endY="-89.5" layoutX="302.0" layoutY="139.0" startX="273.5" startY="224.5" stroke="#72bdf7" strokeWidth="3.0" />
+      <Line endX="453.0" layoutX="121.0" layoutY="52.0" startX="230.0" stroke="#72bdf7" strokeWidth="3.0" />
+      <Line endX="226.0" layoutX="-169.0" layoutY="49.0" startX="190.5" startY="0.5" stroke="#72bdf7" strokeWidth="3.0" />
+      <Label layoutX="46.0" layoutY="116.0" text="Description" />
+      <Label layoutX="46.0" layoutY="159.0" text="Volume Horaire" />
+      <Label layoutX="48.0" layoutY="213.0" text="Date Formation" />
+      <Label layoutX="318.0" layoutY="112.0" text="adresse" />
+      <Label layoutX="322.0" layoutY="160.0" text="Prix" />
+      <TextField fx:id="tfDescriptionFormation" layoutX="138.0" layoutY="112.0" />
+      <TextField fx:id="tfVolumeHoraireFormation" layoutX="140.0" layoutY="156.0" />
+      <DatePicker fx:id="tfDateFormation" layoutX="145.0" layoutY="210.0" prefHeight="25.0" prefWidth="147.0" />
+      <TextField fx:id="tfAdresseFormation" layoutX="373.0" layoutY="111.0" />
+      <TextField fx:id="tfPrixFormation" layoutX="373.0" layoutY="156.0" />
+      <CheckBox fx:id="CHBoxPromoFormation" layoutX="374.0" layoutY="223.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="147.0" text="En Promotion" />
    </children>
 </AnchorPane>

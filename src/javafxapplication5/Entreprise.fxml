@@ -5,33 +5,92 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="512.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EntrepriseController">
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EntrepriseController">
    <children>
-      <TableView fx:id="TVentreprise" layoutX="3.0" layoutY="127.0" prefHeight="269.0" prefWidth="883.0">
+      <TableView fx:id="TVentreprise" layoutX="268.0" layoutY="210.0" prefHeight="267.0" prefWidth="938.0">
          <columns>
             <TableColumn fx:id="tvNomEntreprise" onEditCommit="#changeNomCellEvent" prefWidth="50.0" text="Nom" />
             <TableColumn fx:id="tvSecteurEntreprise" onEditCommit="#changeSecteurCellEvent" prefWidth="56.0" text="Secteur" />
             <TableColumn fx:id="tvMatriculeFiscalEntreprise" onEditCommit="#changeMatriculeCellEvent" prefWidth="103.0" text="Martricule fiscal" />
             <TableColumn fx:id="tvSiteEntreprise" onEditCommit="#changeSiteCellEvent" prefWidth="52.0" text="Site" />
-            <TableColumn fx:id="tvEmailEntreprise" onEditCommit="#changeEmailCellEvent" prefWidth="147.0" text="Email" />
-            <TableColumn fx:id="tvTelephneEntreprise" minWidth="2.0" onEditCommit="#changeTelephoneCellEvent" prefWidth="87.0" text="Telephone" />
-            <TableColumn fx:id="tvTailleEntreprise" onEditCommit="#changeTailleCellEvent" prefWidth="78.0" text="Taille" />
-            <TableColumn fx:id="tvActions2" maxWidth="288.0" onEditCommit="#changeTailleCellEvent" prefWidth="112.0" text="modfier" />
-            <TableColumn fx:id="tvActions" onEditCommit="#changeTailleCellEvent" prefWidth="71.0" text="ajout ff" />
-            <TableColumn fx:id="tvActions1" maxWidth="328.0" onEditCommit="#changeTailleCellEvent" prefWidth="39.0" text="supp" />
-            <TableColumn fx:id="tvActions4" maxWidth="328.0" onEditCommit="#changeTailleCellEvent" prefWidth="153.0" text="Detail" />
+            <TableColumn fx:id="tvEmailEntreprise" onEditCommit="#changeEmailCellEvent" prefWidth="139.0" text="Email" />
+            <TableColumn fx:id="tvTelephneEntreprise" minWidth="2.0" onEditCommit="#changeTelephoneCellEvent" prefWidth="73.0" text="Telephone" />
+            <TableColumn fx:id="tvTailleEntreprise" onEditCommit="#changeTailleCellEvent" prefWidth="48.0" text="Taille" />
+            <TableColumn fx:id="tvActions2" maxWidth="288.0" onEditCommit="#changeTailleCellEvent" prefWidth="93.0" text="modfier" />
+            <TableColumn fx:id="tvActions" onEditCommit="#changeTailleCellEvent" prefWidth="114.0" text="ajout formation" />
+            <TableColumn fx:id="tvActions1" maxWidth="328.0" onEditCommit="#changeTailleCellEvent" prefWidth="100.0" text="supp" />
+            <TableColumn fx:id="tvActions4" maxWidth="328.0" onEditCommit="#changeTailleCellEvent" prefWidth="109.0" text="Detail" />
          </columns>
       </TableView>
-      <Label layoutX="47.0" layoutY="28.0" prefHeight="53.0" prefWidth="334.0" text="Entreprise index">
+      <Label layoutX="282.0" layoutY="30.0" prefHeight="53.0" prefWidth="334.0" text="Entreprise index">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="btnInsert" layoutX="74.0" layoutY="486.0" mnemonicParsing="false" onAction="#handleButtonAction" onMouseClicked="#addEntreprise" text="Ajouter entreprise" />
-      <TextField fx:id="liveSearchEntreprise" layoutX="111.0" layoutY="81.0" />
-      <Label layoutX="19.0" layoutY="85.0" prefHeight="17.0" prefWidth="69.0" text="Chercherez" />
+      <Button fx:id="btnInsert" layoutX="282.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleButtonAction" onMouseClicked="#addEntreprise" text="Ajouter entreprise">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pngtree-add-vector-icon-png-image_3723582.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <TextField fx:id="liveSearchEntreprise" layoutX="282.0" layoutY="178.0" prefHeight="25.0" prefWidth="402.0" promptText="Chercher une entrprise (EX: cisco,cisco@gmail.com,+216 24 816 228)" />
+      <VBox layoutY="-3.0" prefHeight="660.0" prefWidth="268.0" style="-fx-background-color: #72bdf7;">
+         <children>
+            <Label contentDisplay="CENTER" prefHeight="145.0" prefWidth="267.0" text="  JobBridge">
+               <font>
+                  <Font size="47.0" />
+               </font>
+            </Label>
+            <Line endX="166.2928924560547" endY="-1.4142440557479858" startX="-100.0" />
+            <Button fx:id="Entepriseback" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#entrepriseback" prefHeight="59.0" prefWidth="269.0" style="-fx-background-color: #72bdf7;" text="Entreprise" textFill="#171717">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/lecturer-with-screen.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Button>
+            <Line endX="167.2928924560547" endY="-1.2071068286895752" startX="-100.0" />
+            <Button fx:id="PageFormationBack" contentDisplay="BOTTOM" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#PageFormationBack" prefHeight="59.0" prefWidth="269.0" style="-fx-background-color: #72bdf7;" text="Formations" textFill="#171717">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/factory.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Line endX="168.5" endY="-0.5" startX="-100.0" />
+         </children>
+      </VBox>
+      <Button fx:id="actualiser" layoutX="1166.0" layoutY="173.0" mnemonicParsing="false" onAction="#actualiser">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/refresh.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ImageView fitHeight="39.0" fitWidth="47.0" layoutX="688.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/loupe.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

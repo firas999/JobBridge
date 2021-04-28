@@ -65,6 +65,7 @@ public class TestController implements Initializable {
        System.out.println(E.getImage());
          String path = "/"+E.getImage();
          path = path.replace("\\","/");
+         
          System.out.println("correct path : "+path);
          
        Image image = new Image(getClass().getResourceAsStream(path));

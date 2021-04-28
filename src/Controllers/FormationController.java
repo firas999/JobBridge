@@ -5,6 +5,50 @@
  */
 package Controllers;
 
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+import java.util.regex.Pattern;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javax.swing.JOptionPane;
+import utils.DataSource;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.geometry.Pos;
+import javafx.util.Duration;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.controlsfx.control.Notifications;
 import java.io.IOException;
 import static java.sql.Date.valueOf;
 import java.net.URL;
@@ -63,6 +107,7 @@ public class FormationController implements Initializable {
     public ResultSet rs;
     services.ServiceFormation serviceFormation = new ServiceFormation();
             ObservableList<Formation> data=FXCollections.observableArrayList();
+            
     private TextField tfIdFormation;
      @FXML
     private TableView<Formation> TVformation;
@@ -89,6 +134,16 @@ public class FormationController implements Initializable {
     private TableColumn<Formation, String> tvActions1;
     @FXML
     private TextField liveSearchFormation;
+    @FXML
+    private Button pdf;
+    @FXML
+    private Button exel;
+    @FXML
+    private Button EntreprisePageBack;
+    @FXML
+    private Button FormationPageback;
+    @FXML
+    private Button actualiser;
     
     
     
@@ -96,7 +151,7 @@ public class FormationController implements Initializable {
             
         Notifications notificationBuilder = Notifications.create()
                 .title("ajouter avec succes")
-                .text("ekteb li theb")
+                .text("ajouter avec succes")
                 .graphic(null)
                 .hideAfter(Duration.seconds(5))
                 .position(Pos.BOTTOM_RIGHT)
@@ -273,7 +328,6 @@ public class FormationController implements Initializable {
     public void showFormation(){
  
         data=(ObservableList<Formation>) serviceFormation.afficher();
-        tvIDformation.setCellValueFactory(new PropertyValueFactory<>("id"));
         tvDescriptionFormation.setCellValueFactory(new PropertyValueFactory<>("Description"));
         tvVHformation.setCellValueFactory(new PropertyValueFactory<>("VolumeHoraire"));
         tvDATEformation.setCellValueFactory(new PropertyValueFactory<>("date_formation"));
@@ -284,10 +338,168 @@ public class FormationController implements Initializable {
         
     }
 
+    @FXML
+    private void pdf(ActionEvent event) throws ClassNotFoundException, ClassNotFoundException, SQLException, IOException, URISyntaxException, DocumentException {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jobbridge", "root", "");
+            PreparedStatement pt = con.prepareStatement("select * from formation");
+            ResultSet rs = pt.executeQuery();
+
+            /* Step-2: Initialize PDF documents - logical objects */
+            Document my_pdf_report = new Document() {
+            };
+
+            PdfWriter.getInstance(my_pdf_report, new FileOutputStream("Formations.pdf"));
+
+            my_pdf_report.open();
+//                       my_pdf_report.add(new Paragraph(new Date().toString()));
+//                            Image img = Image.getInstance("c:/6.png");
+//                            my_pdf_report.add(img);
+            //   my_pdf_report.add(new Paragraph("ACTIVITES"));
+            my_pdf_report.addCreationDate();
+
+            //we have four columns in our table
+            PdfPTable my_report_table = new PdfPTable(6);
+
+            //create a cell object
+            PdfPCell table_cell;
+
+            table_cell = new PdfPCell(new Phrase(" Description"));
+            //  table_cell.setBackgroundColor(BaseColor.WHITE);
+            my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("volume Horaire"));
+            // table_cell.setBackgroundColor(BaseColor.WHITE);
+            my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("date formation"));
+            // table_cell.setBackgroundColor(BaseColor.WHITE);
+            my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("adresse"));
+            // table_cell.setBackgroundColor(BaseColor.WHITE);
+            my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("prix"));
+            //  table_cell.setBackgroundColor(BaseColor.WHITE);
+            my_report_table.addCell(table_cell);
+            table_cell = new PdfPCell(new Phrase("promotion"));
+            //  table_cell.setBackgroundColor(BaseColor.WHITE);
+            my_report_table.addCell(table_cell);
+
+            while (rs.next()) {
+
+                String nom = rs.getString("description");
+                table_cell = new PdfPCell(new Phrase(nom));
+                my_report_table.addCell(table_cell);
+                int titre = rs.getInt("volume_horaire");
+                table_cell = new PdfPCell(new Phrase(titre+""));
+                my_report_table.addCell(table_cell);
+                String desc = rs.getString("date_formation");
+                table_cell = new PdfPCell(new Phrase(desc));
+                my_report_table.addCell(table_cell);
+                String d = rs.getString("adresse");
+                table_cell = new PdfPCell(new Phrase(d));
+                my_report_table.addCell(table_cell);
+                int p = rs.getInt("prix");
+                table_cell = new PdfPCell(new Phrase(p+""));
+                my_report_table.addCell(table_cell);
+                int promo=rs.getInt("promo");
+                String s="Pas de promotion";
+                if (promo==1)
+                s ="en promotion";
+                
+                table_cell = new PdfPCell(new Phrase(s));
+                my_report_table.addCell(table_cell);
+
+            }
+            /* Attach report table to PDF */
+
+            my_pdf_report.add(my_report_table);
+
+            System.out.println(my_pdf_report);
+            my_pdf_report.close();
+            JOptionPane.showMessageDialog(null, "impression effectuée");
+
+            /* Close all DB related objects */
+            rs.close();
+            pt.close();
+            con.close();
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    
+    }
+
+    @FXML
+    private void exel(ActionEvent event)  throws SQLException, FileNotFoundException, IOException {
+        Connection cnx = DataSource.getInstance().getCnx();
+        String query = "Select * from formation";
+        PreparedStatement pst = cnx.prepareStatement(query);
+        ResultSet rs = pst.executeQuery();
+
+
+        
+        XSSFWorkbook wb = new XSSFWorkbook();
+        XSSFSheet sheet = wb.createSheet("formation");
+        XSSFRow header = sheet.createRow(0);
+        header.createCell(0).setCellValue("Description");
+        header.createCell(1).setCellValue("volume Horaire");
+        header.createCell(2).setCellValue("date formation");
+        header.createCell(3).setCellValue("adresse");
+        header.createCell(4).setCellValue("prix");
+        header.createCell(5).setCellValue("promotion");
+
+        int index = 1;
+        while (rs.next()) {
+            XSSFRow row = sheet.createRow(index);
+            row.createCell(0).setCellValue(rs.getString("Description"));
+            row.createCell(1).setCellValue(rs.getString("volume_horaire"));
+            row.createCell(2).setCellValue(rs.getString("date_formation"));
+            row.createCell(3).setCellValue(rs.getString("adresse"));
+            row.createCell(4).setCellValue(rs.getString("prix"));
+            row.createCell(5).setCellValue(rs.getString("promo"));
+
+            index++;
+        }
+
+        FileOutputStream file = new FileOutputStream("Formations.xlsx");
+        wb.write(file);
+        file.close();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Exportation effectuée!!!");
+        alert.showAndWait();
+        pst.close();
+        rs.close();
+    }
+
+    @FXML
+    private void EntreprisePageBack(ActionEvent event) throws IOException {
+          Parent root = FXMLLoader.load(getClass().getResource("/javafxapplication5/Entreprise.fxml"));
+        EntreprisePageBack.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void FormationPageback(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Interface/Formation.fxml"));
+        FormationPageback.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void actualiser(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("/Interface/Formation.fxml"));
+        actualiser.getScene().setRoot(root); 
+    }
+    
+    }
+
     
     
     
 
 
     
-}
+

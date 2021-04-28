@@ -35,8 +35,6 @@ public class AfficherFormatinFrontController implements Initializable {
     private AnchorPane produits;
     @FXML
     private GridPane grid;
-    @FXML
-    private Button btnPromo;
 
     /**
      * Initializes the controller class.
@@ -72,9 +70,6 @@ public class AfficherFormatinFrontController implements Initializable {
         }
     }
 
-    @FXML
-    private void OnclickPromo(ActionEvent event) {
-    }
     
     
 }

@@ -33,8 +33,6 @@ private final List<Entreprise> entrepriseList = new ArrayList<>();
     private AnchorPane produits;
     @FXML
     private GridPane grid;
-    @FXML
-    private Button btnPromo;
 
     /**
      * Initializes the controller class.
@@ -53,7 +51,7 @@ private final List<Entreprise> entrepriseList = new ArrayList<>();
                 TestController AA = fxmlloader.getController();
                //  AA.setData(produit.get(0));
                 AA.setData(entrepriseList.get(i));
-                if (column == 3) {
+                if (column == 2) {
                     column = 0;
                     row++;
                 }
@@ -69,9 +67,5 @@ private final List<Entreprise> entrepriseList = new ArrayList<>();
         }
     }
 
-    @FXML
-    private void OnclickPromo(ActionEvent event) {
-        
-    }
     
 }

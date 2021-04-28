@@ -26,9 +26,9 @@ public class JavaFXApplication5 extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
       
-        //
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Interface/AfficherEntreprise.fxml"));
-        
+          // FXMLLoader loader=new FXMLLoader(getClass().getResource("/Interface/AfficherFormatinFront.fxml"));
+        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/Interface/AfficherEntreprise.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("Entreprise.fxml"));
         Parent root=loader.load();
         Scene scene=new Scene(root);
         primaryStage.setScene(scene);

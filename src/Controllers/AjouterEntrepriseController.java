@@ -92,6 +92,7 @@ public class AjouterEntrepriseController implements Initializable {
     private void handleButtonAction(ActionEvent event) throws InterruptedException {
         if (event.getSource()==btnInsert){
             insertEntreprise();
+            btnInsert.getScene().getWindow().hide();
            
         }
     }

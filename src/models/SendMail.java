@@ -36,7 +36,7 @@ public class SendMail {
         //Your gmail address
         String myAccountEmail = "jobbridge938@gmail.com";
         //Your gmail password
-        String password = "Esprit98";
+        String password = "Medelin2001";
 
         //Create a session with account credentials
         Session session = Session.getInstance(properties, new Authenticator() {
